@@ -1,0 +1,3 @@
+Página de administración
+<?php
+

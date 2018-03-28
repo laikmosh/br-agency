@@ -16,6 +16,13 @@
 		"oAP": "\/admin.php",
 		"oF": 0
 		},
+	"\/administrador.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/administrador.php",
+		"oF": 0
+		},
 	"\/basic-page.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -61,13 +68,6 @@
 		"pME": 1,
 		"rFN": 0,
 		"uCM": 0
-		},
-	"\/README.txt": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/README.txt",
-		"oF": 0
 		},
 	"\/scripts\/main.js": {
 		"ft": 64,
