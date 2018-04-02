@@ -7,19 +7,25 @@
 }
 
 body {
-    margin: 0px;
+    margin: auto;
+    padding: 0 15px;
     min-height: 100vh;
+    max-width: 970px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: normal;
-    color: --negro;
+    color: var(--negro);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+* {
+	transition: all 0.5s;
+}
+
 a:link, a:visited, a:hover, a:active{
-    color: inherit;
+    /*color: inherit;*/
     text-decoration: none;
 }
 
@@ -35,12 +41,60 @@ button:focus {
 }
 
 ::selection {
-    background:--rojo;
-    color:--blanco;
+    background:var(--rojo);
+    color:var(--blanco);
     text-shadow:none;
 }
 
 /* HEADER */ 
+
+.header {
+	display: flex;
+	border-bottom: 2px solid var(--rojo);
+	justify-content: space-between;
+}
+
+.header_logo {
+	flex-grow: 1;
+	display: flex;
+}
+
+.header_logo img {
+	width: 100%;
+	max-width: 600px;
+	min-width: 450px;
+	object-fit: contain;
+}
+
+.header_links {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	margin-left: -160px;
+	background: rgba(255,255,255,0.5);
+	box-shadow: -20px 0 20px -10px rgba(255,255,255,0.5);
+}
+
+.social_links {
+	--circunferencia: 27px;
+	color: var(--blanco);
+	background: var(--negro);
+	display: flex;
+	justify-content: center;
+	border-radius: 50%;
+	width: var(--circunferencia);
+	height: var(--circunferencia);
+	margin-left: calc(var(--circunferencia) * 0.4);
+	font-size: calc(var(--circunferencia) * 0.55);
+	line-height: calc(var(--circunferencia) + 1px);
+	/*border: 10px solid var(--blanco);*/
+}
+
+.social_links:hover {
+	background: var(--rojo);
+	opacity: 1;
+}
 
 /* CUERPO */ 
 
@@ -48,7 +102,19 @@ button:focus {
 
 /* NORAMALIZADOR */ 
 
+.fa {
+	line-height: inherit!important;
+}
+
 /* FUENTES */ 
+
+/*@font-face {
+    font-family: 'nombrefuente';
+    src: url('fonts/nombrefuente.ttf') format('ttf'),
+         url('nombrefuente.otro') format('otro');
+    font-weight: normal;
+    font-style: normal;
+}*/
 
 /* RESPONSIVE */ 
  

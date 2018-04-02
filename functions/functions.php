@@ -67,7 +67,10 @@ function add_templates_fields() {
 function cacher ($file = "wa") {
 	//función para eliminar cachés automáticamente al hacer ediciones
   $cache_num =filemtime($_SERVER["DOCUMENT_ROOT"].$file);
+  if ($cache_num == "") {
+  } else {
   echo $file."?v=".$cache_num;
+	}
 } //fin cacher
 
 function p_log($data="nodata",$file = "p",$line="-",$array="-") {
