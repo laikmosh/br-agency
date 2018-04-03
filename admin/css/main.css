@@ -1,0 +1,6 @@
+/* sección add new dj */ 
+.cont_new_dj {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+ }

@@ -17,7 +17,15 @@ body {
     color: var(--negro);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+general {
+	display: flex;
+	flex-direction: column;
+}
+
+.blur {
+	filter: blur(5px);
 }
 
 * {
@@ -46,12 +54,66 @@ button:focus {
     text-shadow:none;
 }
 
+.boton {
+	background: var(--rojo);
+	color: var(--blanco);
+	padding: 12px 22px;
+	border-radius: 5px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.boton:hover {
+	background: var(--negro);
+}
+
+.boton .fa {
+	margin-right: 10px;
+}
+
+/* SAHDOW POPUPS */ 
+.shadow {
+	position: fixed;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+	cursor: pointer;
+}
+
+.hidden, .hidden * {
+	opacity: 0!important;
+	pointer-events: none!important;
+}
+
+.shadow > div {
+	border-radius: 20px;
+	background: var(--blanco);
+	width: 70%;
+	min-width: 500px;
+	min-height: 70vh;
+	box-sizing: border-box;
+	padding: 20px;
+	margin: auto;
+	opacity: 0;
+	pointer-events: none;
+	cursor: initial;
+	box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+.shadow  .active {
+	opacity: 1;
+	pointer-events: initial;
+}
+
 /* HEADER */ 
 
-.header {
+header {
 	display: flex;
 	border-bottom: 2px solid var(--rojo);
 	justify-content: space-between;
+	margin-bottom: 15px;
 }
 
 .header_logo {
@@ -94,6 +156,7 @@ button:focus {
 .social_links:hover {
 	background: var(--rojo);
 	opacity: 1;
+	border-radius: 3px;
 }
 
 /* CUERPO */ 
