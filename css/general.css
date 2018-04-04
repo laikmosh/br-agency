@@ -1,11 +1,12 @@
 /* GENERAL */ 
-:root {
+:root {  
+/* paleta de colores */
   --rojo: #ff0000;
   --gris: #a5a5a5;
   --negro: #000;
   --blanco: #fff;
 }
-
+html { -webkit-font-smoothing: antialiased; }
 body {
     margin: auto;
     padding: 0 15px;
@@ -24,9 +25,6 @@ general {
 	flex-direction: column;
 }
 
-.blur {
-	filter: blur(5px);
-}
 
 * {
 	transition: all 0.5s;
@@ -41,12 +39,108 @@ a:hover {
     opacity: 0.8;
 }
 
+/*inputs*/
+
+sticker, .tit_label {
+position: absolute;
+top: -10px;
+left: 15px;
+color: var(--blanco);
+background: var(--negro);
+padding: 2px 15px 2px 10px;
+font-size: 0.8em;
+font-weight: bold ;
+text-transform: uppercase ;
+}
+
+.tit_label {
+	position: relative;
+	zoom: 1.5;
+}
+
+separador {
+	padding-top: 25px;
+	--line: 5px;
+	display: block;
+	width: calc(100% + 23px);
+	color: var(--blanco);
+	text-align: left;
+	padding-left: calc(var(--line) * 4);
+	font-weight: bold;
+	font-size: 0.9em;
+	border: 1px solid var(--gris);
+	border-width: 0 0 calc(var(--line) / 2) 0;
+	position: relative;
+	left: -22px;
+	margin-bottom: 45px;
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .3);
+}
+
+separador span {
+	padding: var(--line) calc(var(--line) * 2) calc(var(--line) * 0.5);
+	background: var(--gris);
+	font-size: calc(var(--line) * 2);
+	text-transform: uppercase;
+	display: inline-flex ;
+}
+
+.input_cont_headline {
+	zoom: 1.5;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
 }
+
+.input_cont {
+	position: relative;
+	display: inline-flex;
+	margin-bottom: 10px;
+	border: 3px solid var(--negro);
+}
+
+input[type="text"] {
+	border: none;
+	padding: 10px;
+	font-size: 14px;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"] + label {
+	background: var(--gris);
+	color: var(--blanco);
+	padding: 7px 22px;
+	font-size: 2em;
+	display: inline-flex;
+	opacity: 0.8;
+}
+
+.radios {
+	display: flex;
+}
+.radio {
+display: inline-flex;
+height: 43px;
+}
+.radio:nth-child(2) {
+margin-top: 15px;
+}
+
+input[type="radio"] + label:hover {
+	opacity: 1;
+}
+
+input[type="radio"]:checked + label {
+	background: var(--rojo);
+}
+
+/*generales*/
 
 ::selection {
     background:var(--rojo);
@@ -71,6 +165,11 @@ button:focus {
 	margin-right: 10px;
 }
 
+.hidden, .hidden * {
+	opacity: 0!important;
+	pointer-events: none!important;
+}
+
 /* SAHDOW POPUPS */ 
 .shadow {
 	position: fixed;
@@ -81,11 +180,8 @@ button:focus {
 	left: 0;
 	background: rgba(0,0,0,0.4);
 	cursor: pointer;
-}
-
-.hidden, .hidden * {
-	opacity: 0!important;
-	pointer-events: none!important;
+	transition: width 0s;
+	transform: translate3d(0, 0, 1000px);
 }
 
 .shadow > div {
@@ -102,9 +198,44 @@ button:focus {
 	cursor: initial;
 	box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
+
+.shadow .active:after {
+	--circunferencia: 40px;
+	color: var(--blanco);
+	background: var(--negro);
+	display: flex;
+	justify-content: center;
+	border-radius: 50%;
+	width: var(--circunferencia);
+	height: var(--circunferencia);
+	margin-left: calc(var(--circunferencia) * 0.4);
+	font-size: calc(var(--circunferencia) * 0.7);
+	line-height: calc(var(--circunferencia) + 1px);
+   content: '\f00d';
+   font-family: FontAwesome;
+   font-weight: normal;
+   font-style: normal;
+   margin:0px 0px 0px 10px;
+   text-decoration:none;
+   position: absolute;
+   right: calc(var(--circunferencia) * -0.4);
+   top: calc(var(--circunferencia) * -0.4);
+   box-shadow: 0 0 3px rgba(0,0,0,.3);
+   cursor: pointer;
+}
+
 .shadow  .active {
 	opacity: 1;
 	pointer-events: initial;
+	position: relative;
+}
+
+.blur {
+    filter: blur(5px);
+    transform: rotateX(20deg)rotateY(30deg);
+    -webkit-transform: rotateX(20deg)rotateY(30deg);
+    pointer-events: none;
+    transform-origin: right center -80px;
 }
 
 /* HEADER */ 

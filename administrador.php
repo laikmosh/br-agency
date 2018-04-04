@@ -10,5 +10,7 @@ require_once("admin/01_new_dj.php");
 ?>
 </general>
 <div class="shadow hidden">
-	<div class="popup add_dj">wa</div>
+	<?
+	require_once("admin/popups/01_add_dj.php");
+	?>
 </div>
