@@ -56,6 +56,7 @@ text-transform: uppercase ;
 .tit_label {
 	position: relative;
 	zoom: 1.5;
+	margin-bottom: 1.5em;
 }
 
 separador {
@@ -115,20 +116,26 @@ input[type="radio"] {
 input[type="radio"] + label {
 	background: var(--gris);
 	color: var(--blanco);
-	padding: 7px 22px;
-	font-size: 2em;
+	padding: 0px 15px;
+	font-size: 1.5em;
 	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	opacity: 0.8;
+	max-height: 2em
 }
 
 .radios {
 	display: flex;
+	margin-bottom: 45px;
+	flex-wrap: wrap;
 }
 .radio {
 display: inline-flex;
 height: 43px;
+margin-bottom: 15px;
 }
-.radio:nth-child(2) {
+.radio:nth-child(2n) {
 margin-top: 15px;
 }
 
@@ -140,7 +147,115 @@ input[type="radio"]:checked + label {
 	background: var(--rojo);
 }
 
+.form_footer {
+	position: relative;
+	background: var(--rojo);
+	left: -20px;
+	bottom: -20px;
+	width: calc(100% + 40px);
+	padding-bottom: 50px;
+	padding-top: 50px;
+	border-radius: 0 0 20px 20px;
+	box-sizing: border-box;
+	display: flex ;
+	justify-content: space-evenly ;
+	align-items: center ;
+}
+
+.form_footer button[type="submit"] {
+	background: var(--rojo);
+	color: var(--blanco);
+	padding: 8px 25px;
+	border: 1px solid var(--blanco);
+	font-size: 1.4em;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.saving, .saved {
+    position: relative;
+    background: rgba(255,255,255,0.3)!important; 
+    border-color: rgba(255,255,255,0.3)!important;
+    pointer-events: none;
+    
+}
+.saving:after, .saved:after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: "Guardando...";
+    left: 100%;
+    top: -1px;
+    border: 1px solid var(--blanco); 
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    background: var(--blanco);
+    color: var(--rojo); 
+	animation-name: slideUp;
+	-webkit-animation-name: slideUp;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease;	
+	-webkit-animation-timing-function: ease;
+
+	visibility: visible !important;	
+}
+
+.saved:after, .retry:after {
+content: "Guardado!";
+animation-delay: 3s;	
+-webkit-animation-delay: 3s;
+animation-duration: 1s;	
+-webkit-animation-duration: 1s;
+animation-direction: reverse;
+-webkit-animation-direction: reverse;
+animation-fill-mode: forwards;
+	}
+.retry:after {
+	width: 150%;
+	content: "Error: Vuelve a intentar";
+}
+
+@keyframes slideUp {
+	0% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	50%{
+		transform: translateY(-8%);
+		opacity: 1;
+	}			
+	100% {
+		transform: translateY(0%);
+	}	
+}
+
+@-webkit-keyframes slideUp {
+	0% {
+		-webkit-transform: translateY(100%);
+		opacity: 0;
+	}
+	50%{
+		-webkit-transform: translateY(-8%);
+		opacity: 1;
+	}			
+	100% {
+		-webkit-transform: translateY(0%);
+	}	
+}
+
 /*generales*/
+h1 {
+	background: var(--rojo);
+	display: inline-block;
+	color: var(--negro);
+	font-size: 2.5em;
+	padding: 3px 150px 3px 50px;
+	margin-left: 2em;
+}
 
 ::selection {
     background:var(--rojo);
@@ -178,10 +293,14 @@ input[type="radio"]:checked + label {
 	height: 100vh;
 	top: 0;
 	left: 0;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0, 0, 0, 0.4);
 	cursor: pointer;
 	transition: width 0s;
 	transform: translate3d(0, 0, 1000px);
+	overflow: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	box-sizing: border-box;
 }
 
 .shadow > div {
