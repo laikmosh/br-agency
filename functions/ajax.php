@@ -2,6 +2,7 @@
 $datos = $_POST["datos"];
 $function = $datos['function'];
 $conexion = false;
+require("functions/templates_fields.php");
 include('functions/ajax/'.$function.'.php');
 if ($conexion == false) {
 	$respuesta->message = "ERROR";

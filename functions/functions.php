@@ -34,7 +34,7 @@ function add_templates_fields() {
 					$f->label = $field;
 					$f->save();
 				}
-				$grupo->add($field);
+				$grupo->add($f);
 			}
 			$grupo->save();
 			
@@ -47,13 +47,14 @@ function add_templates_fields() {
 			$template = $templates->$template_name;
 			$grupo = $template->fieldgroup;
 			foreach ($add_fields as $field => $type) {	//Agegar campos al grupo
-				if(!$fields->$field) {	//Si el campo no existe, crearlo
+				if(!$fields->$field) { //Si el campo no existe, crearlo
 					$f = new Field();
 					$f->type = $modules->get($type);
 					$f->name = $field;
 					$f->label = $field;
 					$f->save();
 				}
+				$grupo->add($f);
 				if(!$grupo->$field) {	//si el campo no existe ya en el grupo, agregarlo
 					$grupo->add($field);
 				}
@@ -63,6 +64,27 @@ function add_templates_fields() {
 		}
 	}
 }	//fin add_templates_fields
+add_templates_fields();
+
+function add_pages($paginas) {
+	foreach ($paginas as $key => $pagina) {
+		$nombre = $pagina["nombre"];
+		$slug = $pagina["slug"];
+		$template = $pagina["template"];
+		$parent = $pagina["parent"];
+		p_log("pre-creada:".$slug,__file__,__line__);
+		if(!$pages->$slug) {
+			p_log("creada:".$slug,__file__,__line__);
+			$p = new Page();// crear objeto de página
+			$p->template = $template; // definir template
+			$p->parent = wire('pages')->get($parent); // definir padre
+			$p->name = $slug; // definir slug
+			$p->title = $nombre; // definir nombre
+			$p->save();
+		}
+	}
+};
+add_pages($paginas);
 
 function cacher ($file = "wa") {
 	//función para eliminar cachés automáticamente al hacer ediciones
@@ -99,6 +121,19 @@ function object_to_array($data) {
   }
   return $data;
 } //fin decons_arrays
+
+function slugify($text) {
+  $text = preg_replace('~[^\pL\d]+~u', '_', $text);
+  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+  $text = preg_replace('~[^-\w]+~', '', $text);
+  $text = trim($text, '_');
+  $text = preg_replace('~-+~', '_', $text);
+  $text = strtolower($text);
+  if (empty($text)) {
+    return 'n-a';
+  }
+  return $text;
+};
 
 
 ?>

@@ -13,43 +13,237 @@
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/admin.php",
+		"oAP": "\/build\/admin.php",
+		"oF": 0
+		},
+	"\/admin\/00_head.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/admin\/00_head.php",
+		"oF": 0
+		},
+	"\/admin\/01_new_dj.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/admin\/01_new_dj.php",
+		"oF": 0
+		},
+	"\/admin\/css\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/build\/admin\/css\/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/admin\/js\/main.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/build\/admin\/js\/main-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/admin\/popups\/01_add_dj.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/admin\/popups\/01_add_dj.php",
 		"oF": 0
 		},
 	"\/administrador.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/administrador.php",
+		"oAP": "\/build\/administrador.php",
 		"oF": 0
 		},
 	"\/basic-page.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/basic-page.php",
+		"oAP": "\/build\/basic-page.php",
 		"oF": 0
+		},
+	"\/build": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/build",
+		"oF": 0
+		},
+	"\/css\/font-awesome.min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/build\/css\/font-awesome.min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/css\/general.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/build\/css\/general-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"\/errors\/500.html": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/errors\/500.html",
+		"oAP": "\/build\/errors\/500.html",
 		"oF": 0
 		},
 	"\/errors\/README.txt": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/errors\/README.txt",
+		"oAP": "\/build\/errors\/README.txt",
+		"oF": 0
+		},
+	"\/fonts\/fontawesome-webfont.eot": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/fontawesome-webfont.eot",
+		"oF": 0
+		},
+	"\/fonts\/fontawesome-webfont.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/build\/fonts\/fontawesome-webfont.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/fonts\/fontawesome-webfont.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/fontawesome-webfont.ttf",
+		"oF": 0
+		},
+	"\/fonts\/fontawesome-webfont.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/fontawesome-webfont.woff",
+		"oF": 0
+		},
+	"\/fonts\/fontawesome-webfont.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/fontawesome-webfont.woff2",
+		"oF": 0
+		},
+	"\/fonts\/FontAwesome.otf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/FontAwesome.otf",
+		"oF": 0
+		},
+	"\/fonts\/fonts.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/build\/fonts\/fonts-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/functions\/ajax.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/functions\/ajax.php",
+		"oF": 0
+		},
+	"\/functions\/ajax\/add_new_dj.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/functions\/ajax\/add_new_dj.php",
+		"oF": 0
+		},
+	"\/functions\/functions.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/functions\/functions.php",
+		"oF": 0
+		},
+	"\/functions\/templates_fields.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/functions\/templates_fields.php",
+		"oF": 0
+		},
+	"\/head.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/head.php",
+		"oF": 0
+		},
+	"\/header.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/header.php",
 		"oF": 0
 		},
 	"\/home.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/home.php",
+		"oAP": "\/build\/home.php",
 		"oF": 0
+		},
+	"\/img\/logo.jpg": {
+		"ft": 16384,
+		"iS": 17748,
+		"oA": 0,
+		"oAP": "\/build\/img\/logo.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/js\/general.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/build\/js\/general-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/jquery.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/build\/js\/jquery-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"\/README.md": {
 		"cB": 0,
@@ -60,7 +254,7 @@
 		"eSQ": 1,
 		"ft": 4096,
 		"oA": 0,
-		"oAP": "\/README.html",
+		"oAP": "\/build\/README.html",
 		"oF": 0,
 		"oFM": 0,
 		"oS": 0,
@@ -68,26 +262,6 @@
 		"pME": 1,
 		"rFN": 0,
 		"uCM": 0
-		},
-	"\/scripts\/main.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/scripts\/main-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
-	"\/styles\/main.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/styles\/main-min.css",
-		"oF": 0,
-		"oS": 3
 		}
 	},
 "hooks": [
@@ -354,7 +528,7 @@
 	"bowerSaveDevDependencies": 0,
 	"bowerUseExactVersion": 0,
 	"browserRefreshDelay": 0,
-	"buildFolderActive": 0,
+	"buildFolderActive": 1,
 	"buildFolderName": "build",
 	"cleanBuild": 1,
 	"coffeeLintFlags2": {
@@ -1493,7 +1667,7 @@
 			}
 		},
 	"esLintSourceType": 0,
-	"externalServerAddress": "http:\/\/localhost:8888",
+	"externalServerAddress": "http:\/\/localhost\/agency",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
 	"jsCheckerReservedNamesString": "",
@@ -2077,7 +2251,7 @@
 		},
 	"languageDefaultsUserDefined": [
 		],
-	"overrideExternalServerCSS": 0,
+	"overrideExternalServerCSS": 1,
 	"previewPathAddition": "",
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
 	"sourceFolderName": "source",
@@ -2250,7 +2424,7 @@
 			}
 		},
 	"uglifyReservedNamesString": "$",
-	"websiteRelativeRoot": ""
+	"websiteRelativeRoot": "\/build"
 	},
 "settingsFileVersion": "3"
 }
