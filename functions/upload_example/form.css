@@ -1,0 +1,9 @@
+
+    /* basic CSS styling */
+    .content { width: 30em; margin: 0 auto ;}
+    .error { color: red;}
+    .myform { padding: 1.618em 0; margin: 0 0 1em 0; border: 1px solid #bbb;}
+    .myform p.error { margin: 0.5em 0; border: 1px solid red; padding: 2px 5px;}
+    .myform .row { padding: 1.618em 0 0; margin: 0 1.618em 1.618em; border-top: 1px solid #aaa; }
+    .myform input[type="text"] { padding: 0.8em; background-color: #eee; border: none; width: 100%; }
+    .myform textarea { padding: 0.8em; background-color: #eee; border: none; width: 100%; }

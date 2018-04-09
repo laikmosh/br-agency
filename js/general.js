@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
 	$(document).on('click', '.shadow', function(event) {
 		// event.preventDefault();
 		var target = event.target.className;

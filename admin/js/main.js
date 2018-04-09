@@ -1,4 +1,66 @@
+
 $(document).ready(function(){
+var imageLoader = $(".input_image_single");  //cargar imagen en cuadro
+imageLoader.each(function(index, el) {
+	el.addEventListener('change', handleImage, false);
+});
+function handleImage(e) {
+	console.log("triggered handleImage");
+	var id = e.target;
+	id = id.parentElement.id;
+	console.log("id="+id);
+	var reader = new FileReader();
+	reader.onload = function (event) {
+	$('#'+id+' img').attr('src',event.target.result);
+	$('#'+id+' .foto_descr').hide();
+	}
+	reader.readAsDataURL(e.target.files[0]);
+}
+
+var dropbox;
+dropbox = $(".input_cont");
+dropbox.each(function(index, el) {
+	el.addEventListener("dragenter", dragenter, false);
+	el.addEventListener("dragleave", dragleave, false);
+	el.addEventListener("dragover", dragover, false);
+	el.addEventListener("drop", drop, false);	
+});
+function dragenter(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  console.log("triggered dragenter");
+  $(this).addClass('dragover');
+}
+function dragleave(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  console.log("triggered dragleave");
+  $(this).removeClass('dragover');
+}
+function dragover(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  console.log("triggered dragover");
+}
+function drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  console.log("triggered drop");
+  var target = e.target;
+  console.dir(e);
+  var dt = e.dataTransfer;
+  // console.dir(dt);
+  var files = dt.files;
+  target.files = files;
+  $(this).removeClass('dragover');
+}
+
+
+
+
+
+
+
 	$(document).on('change', 'input[name=venue]', function(event) {
 		var tipo = $('input[name=venue]:checked').val();
 		$('.generos + label').hide();

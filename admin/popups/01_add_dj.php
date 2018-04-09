@@ -1,6 +1,19 @@
 <div class="popup add_dj">
-<form id="add_new_dj" data-funcion="add_new_dj">
 	<h1>Agregar DJ</h1>
+	<div>
+		<separador><span>Presskit</span></separador>
+	   <!-- tag para multi: multiple="multiple" agregar [] en name-->
+	    <div class="foto_label input_cont" id="profile_image_uploader" onclick="$('#profile_image').click()">
+	    	<input class="input_image_single" type="file" name="profile_image" id="profile_image" accept="image/jpg,image/jpeg,image/gif,image/png"/>
+	    	<sticker>Foto de perfil</sticker>
+	        <div class="foto_descr">
+	            <div class="foto_descr_icono"><i class="fa fa-upload" aria-hidden="true"></i></div>
+	            <div class="foto_descr_texto">Arrastra una foto de perfil aquí, o haz click para seleccionar un archivo.</div>
+	        </div>
+	        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
+	    </div>
+	</div>
+<form id="add_new_dj" data-funcion="add_new_dj">
 	<separador><span>Datos personales</span></separador>
 	<span class="input_cont input_cont_headline">
 		<input type="text" name="dj_name" required>

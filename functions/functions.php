@@ -4,6 +4,8 @@ if($config->ajax) {
     exit;
 }
 
+$djs = $pages->get("/djs/")->children();
+
 switch ($_SERVER['HTTP_HOST']){
 	//definir ambiente de ejecución
   case 'www.elbedroom.mx': case 'elbedroom.mx': define('DEV_ENVIROMENT', 'LIVE'); break;
@@ -11,80 +13,8 @@ switch ($_SERVER['HTTP_HOST']){
   case 'localhost': define('DEV_ENVIROMENT','LOCALHOST'); break;
 }
 
-function add_templates_fields() {
-	// Asignar variables para acceder mas fácil
-	$fields = wire("fields");
-	$templates = wire("templates");
-	$modules = wire("modules");
+require_once("functions/estructuras.php");
 
-	// Listar templates y campos
-	require("functions/templates_fields.php");
-
-
-	// Crear templates y campos
-	foreach ($templates_fields as $template_name => $add_fields) {
-		if(!$templates->$template_name) {	//Si el template no existe, crear uno nuevo
-			$grupo = new Fieldgroup();	//crear grupo de campos para el template
-			$grupo->name = $template_name;
-			foreach ($add_fields as $field => $type) {	//Agegar campos al grupo
-				if(!$fields->$field) { //Si el campo no existe, crearlo
-					$f = new Field();
-					$f->type = $modules->get($type);
-					$f->name = $field;
-					$f->label = $field;
-					$f->save();
-				}
-				$grupo->add($f);
-			}
-			$grupo->save();
-			
-			$template = new Template();	//Crear template
-			$template->name = $template_name;
-			$template->fieldgroup = $grupo;
-			$template->save();	//Guardar template
-
-		} else {	//Si el template ya existe, solo agregar nuevos campos
-			$template = $templates->$template_name;
-			$grupo = $template->fieldgroup;
-			foreach ($add_fields as $field => $type) {	//Agegar campos al grupo
-				if(!$fields->$field) { //Si el campo no existe, crearlo
-					$f = new Field();
-					$f->type = $modules->get($type);
-					$f->name = $field;
-					$f->label = $field;
-					$f->save();
-				}
-				$grupo->add($f);
-				if(!$grupo->$field) {	//si el campo no existe ya en el grupo, agregarlo
-					$grupo->add($field);
-				}
-			}
-			$grupo->save();	//guardar grupo
-			$template->save();	//guardar template
-		}
-	}
-}	//fin add_templates_fields
-add_templates_fields();
-
-function add_pages($paginas) {
-	foreach ($paginas as $key => $pagina) {
-		$nombre = $pagina["nombre"];
-		$slug = $pagina["slug"];
-		$template = $pagina["template"];
-		$parent = $pagina["parent"];
-		p_log("pre-creada:".$slug,__file__,__line__);
-		if(!$pages->$slug) {
-			p_log("creada:".$slug,__file__,__line__);
-			$p = new Page();// crear objeto de página
-			$p->template = $template; // definir template
-			$p->parent = wire('pages')->get($parent); // definir padre
-			$p->name = $slug; // definir slug
-			$p->title = $nombre; // definir nombre
-			$p->save();
-		}
-	}
-};
-add_pages($paginas);
 
 function cacher ($file = "wa") {
 	//función para eliminar cachés automáticamente al hacer ediciones
@@ -95,19 +25,21 @@ function cacher ($file = "wa") {
 	}
 } //fin cacher
 
-function p_log($data="nodata",$file = "p",$line="-",$array="-") {
+function p_log($data="nodata",$array="-") {
 	//función para loguear datos
-  $file = pathinfo($file, PATHINFO_FILENAME);
-  $array = object_to_array($array);
-  if ( is_array( $array ) ) {
-    ob_start();
-    print_r($array);
-    $array = ob_get_contents();
-    ob_end_clean();
-  }
-  $data = $data.": ".$array; 
+	$backtrace = debug_backtrace();
+	$last = $backtrace[0];
+	$file = pathinfo($last['file'], PATHINFO_FILENAME);
+	$array = object_to_array($array);
+	ob_start();
+		print_r($array);
+	$array = ob_get_clean();
+	$data_log = $data.": ".$array; 
 
-  ProcessWire\wire('log')->save($file."_log", $data." @".$file.' - linea '.$line);
+	ProcessWire\wire('log')->save($file."_log", $data_log." @".$file.' - linea '.$last['line']);
+	?>
+	<div><h2><?=$data?></h2><pre><?print_r($array)?></pre></div>
+	<?
 } //fin logger
 
 function object_to_array($data) {
@@ -134,6 +66,16 @@ function slugify($text) {
   }
   return $text;
 };
+
+function login_check($user) {
+	if (!($user->isLoggedin())) {
+		$respuesta->message = "unlogged";
+		$respuesta->code = 1337;
+		header('HTTP/1.1 500 No ha iniciado sesión o no tiene permisos');
+        header('Content-Type: application/json; charset=UTF-8');
+        die(json_encode($respuesta));
+	}
+}
 
 
 ?>

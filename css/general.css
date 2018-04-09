@@ -1,4 +1,8 @@
 /* GENERAL */ 
+pre {
+	font-size: 9px;
+	line-height: 8px;
+}
 :root {  
 /* paleta de colores */
   --rojo: #ff0000;
@@ -15,7 +19,7 @@ body {
     padding: 0 15px;
     width: 100%;
     min-height: 100vh;
-    max-width: 970px;
+    max-width: 1024px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: normal;
@@ -30,6 +34,7 @@ general {
 	flex-direction: column;
 	box-sizing: border-box ;
 	overflow-x: hidden ;
+	padding-bottom: 15vh;
 }
 
 
@@ -169,7 +174,8 @@ separador {
 	padding-top: 25px;
 	--line: 5px;
 	display: block;
-	width: calc(100% + 23px);
+	width: calc(100% + 20px);
+	max-width: unset ;
 	color: var(--blanco);
 	text-align: left;
 	padding-left: calc(var(--line) * 4);
@@ -178,7 +184,8 @@ separador {
 	border: 1px solid var(--gris);
 	border-width: 0 0 calc(var(--line) / 2) 0;
 	position: relative;
-	left: -22px;
+	left: -20px;
+	right: -20px;
 	margin-bottom: 45px;
 	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .3);
 }
