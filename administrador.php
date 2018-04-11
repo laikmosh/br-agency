@@ -6,14 +6,13 @@ require_once("admin/00_head.php");
 <general>
 <?
 require_once("header.php");
-require_once("functions/upload_example/form-upload.php");
 require_once("admin/01_new_dj.php");
 require_once("admin/02_orders.php");
 require_once("admin/03_djs.php");
 require_once("admin/04_trash.php");
 ?>
 </general>
-<div class="shadow hidden">
+<div class="shadow hidden" id="shadow">
 	<?
 	require_once("admin/popups/01_add_dj.php");
 	?>

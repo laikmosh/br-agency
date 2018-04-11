@@ -41,7 +41,9 @@ $dj_fields = $templates_fields["dj_profile"];
 						$campo = "DJ";
 						?>
 						<div class="column dj_<?=$campo?>">
-							<div><?=$dj->dj_name?> [<?=$dj->nombre?> <?=$dj->apellido?>](<?=$dj->edad?> años)</div>
+							<div>
+								<big><b><?=$dj->dj_name?></b></big>
+								<br>[<?=$dj->nombre?> <?=$dj->apellido?>]</div>
 						</div>
 						<?
 						continue;
@@ -64,7 +66,7 @@ $dj_fields = $templates_fields["dj_profile"];
 				}
 				?>
 				<div class="column dj_acciones">
-							<div><button>Editar</button><button>Restaurar</button><button>Eliminar permanentemente</button></div>
+							<div><button>Editar</button><button>Restaurar</button><br><button>Eliminar permanentemente</button></div>
 						</div>			
 				</div>
 				<?

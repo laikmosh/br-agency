@@ -37,9 +37,13 @@ function p_log($data="nodata",$array="-") {
 	$data_log = $data.": ".$array; 
 
 	ProcessWire\wire('log')->save($file."_log", $data_log." @".$file.' - linea '.$last['line']);
-	?>
-	<div><h2><?=$data?></h2><pre><?print_r($array)?></pre></div>
-	<?
+  if(!$file == "ajax") {
+    ?>
+    <div><h2><?=$data?></h2><pre><?print_r($array)?></pre></div>
+    <?
+  } else {
+    return $data_log;
+  }
 } //fin logger
 
 function object_to_array($data) {
@@ -69,8 +73,8 @@ function slugify($text) {
 
 function login_check($user) {
 	if (!($user->isLoggedin())) {
-		$respuesta->message = "unlogged";
-		$respuesta->code = 1337;
+		$respuesta->message = 'HTTP/1.1 500 No ha iniciado sesión o no tiene permisos';
+		$respuesta->code = 0;
 		header('HTTP/1.1 500 No ha iniciado sesión o no tiene permisos');
         header('Content-Type: application/json; charset=UTF-8');
         die(json_encode($respuesta));

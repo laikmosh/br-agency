@@ -1,18 +1,32 @@
 
 $(document).ready(function(){
+	window.addEventListener("dragover",function(e){
+  e = e || event;
+  e.preventDefault();
+},false);
+window.addEventListener("drop",function(e){
+  e = e || event;
+  e.preventDefault();
+},false);
 var imageLoader = $(".input_image_single");  //cargar imagen en cuadro
+var afuera = document.getElementById("shadow");
+console.dir(afuera);
+afuera.addEventListener("drop", drop, false);
 imageLoader.each(function(index, el) {
 	el.addEventListener('change', handleImage, false);
 });
 function handleImage(e) {
 	console.log("triggered handleImage");
 	var id = e.target;
-	id = id.parentElement.id;
+	id = id.parentElement.parentElement.id;
 	console.log("id="+id);
+	console.dir(e);
 	var reader = new FileReader();
 	reader.onload = function (event) {
-	$('#'+id+' img').attr('src',event.target.result);
-	$('#'+id+' .foto_descr').hide();
+		$('#'+id+' img').attr('src',event.target.result);
+		$('#'+id+' .foto_descr').hide();
+	  	$( '#'+id+" .img_progress" ).show();
+	  	$( '#'+id ).submit();
 	}
 	reader.readAsDataURL(e.target.files[0]);
 }
@@ -50,10 +64,74 @@ function drop(e) {
   console.dir(e);
   var dt = e.dataTransfer;
   // console.dir(dt);
+  var field = target.id;
   var files = dt.files;
   target.files = files;
   $(this).removeClass('dragover');
+
 }
+
+var progress = function(parent){
+	return function(e){
+	    if(e.lengthComputable){
+	        var max = e.total;
+	        var current = e.loaded;
+
+	        var Percentage = (current * 100)/max;
+	        var Percentage_left = 100 - Percentage;
+	        $( "#"+parent+" .img_progress" ).css("width",Percentage_left+"%"); 
+	        console.log("LOADING... "+Percentage_left+"% left");
+
+
+	        if(Percentage >= 99)
+	        {
+	           console.log(parent+" completado");
+	           $( "#"+parent+" .img_progress" ).css("width",Percentage_left+"%"); 
+	           console.log("LOADING... "+Percentage_left+"0% left, COMPLETED");
+
+           		setTimeout(function() {
+					$( "#"+parent+" .img_progress" ).css("width","100%").hide();
+				}, 500);
+	        }
+	    }  
+	}
+ }
+$("#images_profile").on('submit',(function(e) {
+  e.preventDefault();
+  var parent = "images_profile";
+  console.log("submitting="+parent);
+  $.ajax({
+	url: location.href,
+	type: 'POST',
+	dataType: 'json',
+  data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+  contentType: false,       // The content type used when sending data to the server.
+  cache: false,             // To unable request pages to be cached
+  processData:false,        // To send DOMDocument or non processed data file it is set to false
+  xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progress(parent), false);
+                }
+                return myXhr;
+        },
+  beforeSend: function() {
+			console.log("Función="+parent);
+			// console.dir(datos_ans);
+ },
+ success: function respuesta(datos_ans) {
+            console.dir(datos_ans);
+            var temp_id = datos_ans["temp_img"];
+            console.log('input[name=temp_id]='+temp_id);
+            $("input[name=temp_id]").val(temp_id);
+ },
+    error: function (response) {
+      // error
+      console.dir(response);
+      console.log(response);
+    }  
+  }); 
+})); 
 
 
 
@@ -99,14 +177,22 @@ function drop(e) {
 
 		$.each(form, function(index, val) {
 			console.log("index="+index+" value="+val);
-			 if (index == "email") {
-			 	console.log("es email")
+			if(index == "temp_id" && val == "null") {
+				$(".shadow").scrollTop( $("#cont_"+index).offset().top );
+				$(".foto_label").addClass('dragover'); 
+			 	setTimeout(function() {
+					$(".foto_label").removeClass('dragover'); 
+				}, 3000);
+				throw new Error("Foto necesaria");
+			}
+
+			if (index == "email") {
 			 	email_valid = email_valid.test(val);
 			 	if (!email_valid) {
 			 		$("input[name=email]").focus();
-			 		throw new Error("no es email valido2");
+			 		throw new Error("Email inválido");
 			 	}
-			 }
+			}
 			 if (index == "venue" || index == "genero" || index == "lineup") {
 			 	if (val == "empty") {
 			 		$("#cont_"+index).addClass('cont_error');
@@ -114,7 +200,7 @@ function drop(e) {
  					setTimeout(function() {
 						$("#cont_"+index).removeClass('cont_error');
 					}, 4000);
-			 		throw new Error("radios vacios");
+			 		throw new Error("Estilo incompleto");
 			 	}
 			 }
 		});

@@ -7,8 +7,9 @@ $fieldgroups = wire("fieldgroups");
 // Listar templates y campos
 require("functions/estructuras_data.php");
 
-function GenerarEstructuras($templates_fields) {
+function GenerarEstructuras($templates_fields,$paginas) {
 	// Asignar variables basicas
+	$pages = wire("pages");
 	$fields = wire("fields");
 	$templates = wire("templates");
 	$modules = wire("modules");
@@ -96,11 +97,12 @@ function GenerarEstructuras($templates_fields) {
 		if(!$existe) {
 			$p = new Page();// crear objeto de página
 		} else {
-			$p = $pages->get("name=".$slug);
+			$p = $pages->get("name=".$pagina["slug"]);
+			$p->of(false);
 		}
 		$p->template = $pagina["template"]; // definir template
 		$p->parent = $pages->get($pagina["parent"]); // definir padre
-		$p->name = $slug; // definir slug
+		$p->name = $pagina["slug"]; // definir slug
 		$p->title = $pagina["nombre"]; // definir nombre
 		$p->save();
 	}
@@ -142,7 +144,7 @@ function GenerarEstructuras($templates_fields) {
         }
     }
 }	//fin add_templates_fields
-GenerarEstructuras($templates_fields);
+GenerarEstructuras($templates_fields,$paginas);
 
 function CrearEditarTemplates($templates, $templates_fields, $fieldgroups, $fields) {
 	// crear array con templates agregados en templates_fields.php

@@ -63,8 +63,9 @@ overflow: hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
 }
-.column.dj_DJ,
-.column.dj_acciones  {
+
+.column.dj_DJ
+{
 overflow: initial;
 white-space: initial;
 text-overflow: initial;
@@ -80,7 +81,37 @@ flex: 2;
 	background: rgba(0,0,0,0.03);
 }
 
+.list_element > .column
+{
+	justify-content: flex-start;
+	align-items: flex-start;
+	font-size: 1.2em;
+}
+
+.list_element > .column > * {
+	padding: 5px 8px 10px;
+}
+
+.list_element > .mensaje,
+.column.dj_acciones
+{
+	justify-content: flex-start;
+	align-items: flex-end;
+	text-align: right;
+}
+
+.list_element > .mensaje > * {
+	padding: 5px 8px 8px 14px;
+}
+
+
+
 /*sección de upload image*/
+#images_profile {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
 .foto_label {
 	background-color: var(--blanco);
 	background-repeat: no-repeat;
@@ -91,10 +122,23 @@ flex: 2;
 	display: inline-flex;
 	cursor: pointer;
 	padding: 3%;
-	width: 30%;
+	flex:1;
 	box-sizing: border-box;
 	position: relative;
-	padding-bottom: 28%;
+	min-width: 300px;
+	margin-right: 1em;
+	max-width: 25vw;
+	width: 25vw;
+	height: 25vw;
+	min-height: 300px;
+	max-height: 20vw;
+}
+
+.gallery_label {
+flex:4;
+margin-right: 0em;
+max-width: inherit;
+display: none;
 }
 
 .foto_label img {
@@ -126,6 +170,8 @@ flex: 2;
 	top: 5%;
 	bottom: 5%;
 	pointer-events: none;
+	max-width: 350px;
+	margin: auto;
 }
 
 .foto_descr_icono .fa {
@@ -147,7 +193,7 @@ max-width: 180px;
 	color: var(--negro);
 }
 
-.input_image_single {
+.input_image {
 	position: absolute;
 	top:0;
 	left: 0;
@@ -155,34 +201,28 @@ max-width: 180px;
 	height: 100%;
 	background-color: red;
 	opacity: 0;
+	cursor: pointer;
+}
+
+.img_progress {
+	background: var(--rojo);
+	mix-blend-mode: darken;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	pointer-events: none;
+	color: var(--blanco);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3em;
+	font-weight: bold;
+	display: none;
+	transition: all 0.25s;
 }
 /*sección de upload image fin*/
-
-.list_element > .column
-{
-	justify-content: flex-start;
-	align-items: flex-start;
-	font-size: 1.2em;
-}
-
-.list_element > .column > * {
-	padding: 5px 8px 10px;
-}
-
-.list_element > .mensaje
-{justify-content: flex-start;align-items: flex-end;}
-
-.list_element > .mensaje {
-	text-align: right;
-}
-
-.list_element > .mensaje > * {
-	padding: 5px 8px 8px 14px;
-}
-
-
-
-
 
 
 /* RESPONSIVE */

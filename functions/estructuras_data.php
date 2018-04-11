@@ -31,12 +31,18 @@ $templates_fields = array(
 
 $paginas = array(
 	1=>array(
+		"nombre"=>"Admin",
+		"slug"=>"admin",
+		"template"=>"administrador",
+		"parent"=>1,
+	),
+	2=>array(
 		"nombre"=>"DJs",
 		"slug"=>"djs",
 		"template"=>"dj_profile",
 		"parent"=>1,
 	),
-	2=>array(
+	3=>array(
 		"nombre"=>"usr_images",
 		"slug"=>"usr_images",
 		"template"=>"usr_images",

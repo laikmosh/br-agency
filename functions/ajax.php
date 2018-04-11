@@ -1,12 +1,15 @@
 <?php 
 $datos = $_POST["datos"];
 $function = $datos['function'];
+if ($function == "") {
+	$function = $_POST["function"];
+}
 $conexion = false;
-require("functions/templates_fields.php");
+require("functions/estructuras_data.php");
 include('functions/ajax/'.$function.'.php');
 if ($conexion == false) {
-	$respuesta->message = "ERROR";
-	$respuesta->code = 1337;
+	$respuesta->message = 'HTTP/1.1 500 No hubo conexion a '.$function.".php";
+	$respuesta->code = 9;
 	$respuesta->path = 'functions/ajax/'.$function.'.php';
 	header('HTTP/1.1 500 No hubo conexion a '.$function.".php");
     header('Content-Type: application/json; charset=UTF-8');
@@ -16,6 +19,5 @@ $respuesta->conexion = $conexion;
 
 $respuesta = json_encode($respuesta);
 echo $respuesta;
-p_log($function,__file__,"end",$respuesta);
 exit();
 ?>
