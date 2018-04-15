@@ -16,7 +16,7 @@
 		        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
 		        <div class="img_progress"></div>
 		    </div>
-		    <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
+<!-- 		    <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
 		    	<input class="input_image input_image_multi" type="file" name="gallery[]" id="gallery" accept="image/jpg,image/jpeg,image/gif,image/png" multiple="multiple" />
 		    	<sticker>Presskit</sticker>
 		        <div class="foto_descr foto_thumb">
@@ -25,7 +25,7 @@
 		        </div>
 		        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
 		        <div class="img_progress"></div>
-		    </div>
+		    </div> -->
 		</form>
 	</div>
 <form id="add_new_dj" data-funcion="add_new_dj">
@@ -55,7 +55,16 @@
 		<input type="text" name="telefono">
 		<sticker>Teléfono</sticker>
 	</span>
+	<span class="input_cont">
+		<input type="text" name="location">
+		<sticker>Ubicación</sticker>
+	</span>
 	<separador><span>Información de estilo</span></separador>
+	<span class="input_cont" style="margin-bottom: 35px;">
+		<textarea name="bio"></textarea>
+		<sticker>Bio</sticker>
+	</span>
+	<br>
 	<span class="tit_label">Venue</span>
 	<div class="radios" id="cont_venue">
 		<input type="radio" name="venue" value="empty" checked>

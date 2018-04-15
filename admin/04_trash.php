@@ -1,7 +1,7 @@
 <?
 $end = strtotime("tomorrow -1second");
 $start = $end - 60 * 60 * 24 * 20 + 1;
-$pagesInTrash = $pages->get('/trash/')->find("include=all, modified>".$start); 
+$pagesInTrash = $pages->get('/trash/')->find("template=dj_profile,include=all, modified>".$start); 
 $dj_fields = $templates_fields["dj_profile"];
 ?>
 <div class="cont_orders">
@@ -16,7 +16,9 @@ $dj_fields = $templates_fields["dj_profile"];
 					$campo == "edad" || 
 					$campo == "venue"|| 
 					$campo == "genero" || 
-					$campo == "lineup"
+					$campo == "lineup" ||
+					$campo == "profile_image" ||
+					$campo == "gallery"
 				) {
 					continue;
 				}
@@ -54,7 +56,9 @@ $dj_fields = $templates_fields["dj_profile"];
 					$campo == "edad" || 
 					$campo == "venue"|| 
 					$campo == "genero" || 
-					$campo == "lineup"
+					$campo == "lineup" ||
+					$campo == "profile_image" ||
+					$campo == "gallery"
 				) {
 						continue;
 					}

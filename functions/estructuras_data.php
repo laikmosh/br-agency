@@ -18,9 +18,13 @@ $templates_fields = array(
 		'email'=>"FieldtypeEmail",
 		'telefono'=>"FieldtypeText",
 		'edad'=>"FieldtypeText",
+		'location'=>"FieldtypeText",
+		'bio'=>"FieldtypeText",
 		'venue'=>"FieldtypeText",
 		'genero'=>"FieldtypeText",
 		'lineup'=>"FieldtypeText",
+		'profile_image'=>"FieldtypeImage",
+		'gallery'=>"FieldtypeImage",
 	),
 	"usr_images" => array(
 		//Campos:

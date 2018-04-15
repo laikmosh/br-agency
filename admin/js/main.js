@@ -1,5 +1,11 @@
 
 $(document).ready(function(){
+
+	$(document).on('click touchstart', '.edit_dj', function(event) {
+		var id = $(this).data('id');
+		console.log("id="+id+" valor="+djs[id].dj_name);
+	});
+
 	window.addEventListener("dragover",function(e){
   e = e || event;
   e.preventDefault();
@@ -83,7 +89,7 @@ var progress = function(parent){
 	        console.log("LOADING... "+Percentage_left+"% left");
 
 
-	        if(Percentage >= 99)
+	        if(Percentage >= 100)
 	        {
 	           console.log(parent+" completado");
 	           $( "#"+parent+" .img_progress" ).css("width",Percentage_left+"%"); 
@@ -160,7 +166,7 @@ $("#images_profile").on('submit',(function(e) {
 			setTimeout(function() {
 				$("#add_new_dj button").removeClass('saved');
 				reset_fields();
-			}, 5000);
+			}, 2000);
 		})
 		.fail(function(error) {
 			$("#add_new_dj button").removeClass('saving');

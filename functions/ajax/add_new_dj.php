@@ -14,11 +14,17 @@ if ($datos["dj_name"] == "" || $datos["nombre"] == "" || $datos["apellido"] == "
 $p = new ProcessWire\Page(); // create new page object
 $p->template = 'dj_profile'; // set template
 $p->parent = $pages->get("/djs/"); // set the parent
-$p->name = $datos["dj_name"]; // give it a name used in the url for the page
+$p->name = $datos["dj_name"].date("d-m-Y H:i:s") . " - " . uniqid();; // give it a name used in the url for the page
 $p->title = $datos["dj_name"]; // set page title (not neccessary but recommended)
 foreach ($campos as $campo => $fieldtype) {
+	if ($fieldtype == "FieldtypeImage") {
+		continue;
+	};
 	$p->$campo=$datos[$campo];
 }
+$p->save();
+$images = $pages->get($datos["temp_id"])->profile_image->first()->filename;
+$p->profile_image->add($images);
 $p->save();
 
 ?>
