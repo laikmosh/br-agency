@@ -29,7 +29,8 @@
 		</form>
 	</div>
 <form id="add_new_dj" data-funcion="add_new_dj">
-	<input type="text" id="cont_temp_id" name="temp_id" value="null" hidden/>
+	<input type="text" class="nullify" id="cont_temp_id" name="temp_id" value="null" hidden/>
+	<input type="text" class="nullify" name="editing_id" value="null" hidden/>
 	<separador><span>Datos personales</span></separador>
 	<span class="input_cont input_cont_headline">
 		<input type="text" name="dj_name" required>
@@ -56,7 +57,12 @@
 		<sticker>Teléfono</sticker>
 	</span>
 	<span class="input_cont">
-		<input type="text" name="location">
+		<select name="location">
+		  <option value="cdmx">Ciudad de México</option>
+		  <option value="gdl">Guadalajara</option>
+		  <option value="cholula">Cholula</option>
+		  <option value="qro">Querétaro</option>
+		</select>
 		<sticker>Ubicación</sticker>
 	</span>
 	<separador><span>Información de estilo</span></separador>
@@ -130,7 +136,7 @@
 		</div>
 	</div>
 	<div class="form_footer">
-		<button class="none" type="submit">Agregar DJ</button> 
+		<button class="none" type="submit">Guardar DJ</button> 
 	</div>
 </form>
 </div>

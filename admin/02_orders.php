@@ -9,26 +9,34 @@
 		</div>
 		<div class="list_container">
 			<? 
-			for ($i=0; $i < 5; $i++) { ?>
+			$orders = $pages->find("template=clientes,parent=clientes");
+			foreach ($orders as $key => $order) {
+			?>
 			<div class="list_element row">
 				<div class="column cliente">
-					<div>Nombre <?=$i?></div>
-					<div>Email <?=$i?></div>
-					<div>Teléfono <?=$i?></div>
-					<div>Orden enviada el: <?=$i?></div>
+					<div>Nombre: <?=$order->nombre?> <?=$order->apellido?></div>
+					<div>Email: <?=$order->email?></div>
+					<div>Teléfono: <?=$order->telefono?></div>
+					<div>Orden enviada el: <?=date("F j, Y", $order->created);?></div>
 				</div>
 				<div class="column evento">
-					<div>Nombre del evento <?=$i?></div>
-					<div>Fecha del evento <?=$i?></div>
-					<div>Lugar del evento <?=$i?></div>
+					<div>Nombre del evento: <?=$order->evento?></div>
+					<div>Fecha del evento: <?=$order->fecha?></div>
+					<div>Lugar del evento: <?=$order->lugar?></div>
 				</div>
 				<div class="column lineup">
-					<div>DJ1 <?=$i?></div>
-					<div>DJ2 <?=$i?></div>
-					<div>DJ3 <?=$i?></div>
+					<?
+					$ids = explode(":", $order->djs);
+					foreach ($ids as $key => $id) {
+						$dj = $pages->get($id);
+						?>
+						<div><?=$dj->dj_name?></div>
+						<?
+					}
+					?>
 				</div>
 				<div class="column mensaje">
-					<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+					<div><?=$order->mensaje?></div>
 				</div>
 			</div>
 			<? }; ?>

@@ -1,9 +1,45 @@
 
 $(document).ready(function(){
 
-	$(document).on('click touchstart', '.edit_dj', function(event) {
-		var id = $(this).data('id');
-		console.log("id="+id+" valor="+djs[id].dj_name);
+	$(document).on('click', '.edit_dj', function(event) {
+		var id = $(this).data("id");
+		var data = {};
+		data["id"] = id;
+		ajx("dj_data",data).done(function(dj) {
+		  	console.log("Respuesta")
+			console.dir(dj);
+			valores = dj["dj"];
+
+			$("input[name=dj_name]").val(valores["dj_name"]);
+			$("input[name=nombre]").val(valores["nombre"]);
+			$("input[name=apellido]").val(valores["apellido"]);
+			$("input[name=email]").val(valores["email"]);
+			$("input[name=telefono]").val(valores["telefono"]);
+			$("input[name=edad]").val(valores["edad"]);
+			// $("input[name=location]").val(valores["location"]);
+			// $('input:select[name=location]').val([valores["location"]]);
+			$('select[name=location]').val(valores["location"]).prop('selected', true);
+			$("textarea[name=bio]").val(valores["bio"]);
+			$("input[name=temp_id]").val(id);
+			$("input[name=editing_id]").val(id);
+			$("#profile_image_uploader img").attr('src',valores["profile_image"][valores["profile_image"].length-1]);
+			$('#profile_image_uploader .foto_descr').hide();
+			$('input:radio[name=venue]').val([valores["venue"]]);
+			$('input:radio[name=genero]').val([valores["genero"]]);
+			$('input:radio[name=lineup]').val([valores["lineup"]]);
+			$(".btn_popup").click();
+		});
+	});
+
+	$(document).on('click touchstart', '.remove_dj', function(event) {
+		var id = $(this).data("id")
+		var data = {};
+		data["id"] = id;
+		ajx("dj_remove",data).done(function(dj) {
+		  	console.log("Respuesta")
+			console.dir(dj);
+			$("#dj_"+id).remove();
+		});
 	});
 
 	window.addEventListener("dragover",function(e){
@@ -153,6 +189,7 @@ $("#images_profile").on('submit',(function(e) {
 
 	$(document).on('submit', '#add_new_dj', function(event) {
 		event.preventDefault();
+		var id = $("input[name=editing_id]").val();
 		var funcion = $(this).data('funcion');
 		var data = $(this);
 		data = form_to_json(data);
@@ -163,10 +200,16 @@ $("#images_profile").on('submit',(function(e) {
 			console.dir(value);
 			$("#add_new_dj button").removeClass('saving');
 			$("#add_new_dj button").addClass('saved');
+			if (id != "null") {
+				$("#dj_"+id).replaceWith(value["dj_elem"]);
+			} else {
+				$(".grid_container_djs").prepend(value["dj_elem"]);
+			}
+			$("#dj_"+id).click();
 			setTimeout(function() {
 				$("#add_new_dj button").removeClass('saved');
 				reset_fields();
-			}, 2000);
+			}, 1500);
 		})
 		.fail(function(error) {
 			$("#add_new_dj button").removeClass('saving');

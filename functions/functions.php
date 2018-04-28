@@ -1,5 +1,7 @@
 <?php
+require_once("functions/dj_listelem.php");
 if($config->ajax) {
+  require_once("login/login.php");
     require("functions/ajax.php"); 
     exit;
 }
@@ -14,6 +16,7 @@ switch ($_SERVER['HTTP_HOST']){
 }
 
 require_once("functions/estructuras.php");
+require_once("functions/dj_listelem.php");
 
 
 function cacher ($file = "wa") {
@@ -71,15 +74,7 @@ function slugify($text) {
   return $text;
 };
 
-function login_check($user) {
-	if (!($user->isLoggedin())) {
-		$respuesta->message = 'HTTP/1.1 500 No ha iniciado sesión o no tiene permisos';
-		$respuesta->code = 0;
-		header('HTTP/1.1 500 No ha iniciado sesión o no tiene permisos');
-        header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode($respuesta));
-	}
-}
+require_once("login/login.php");
 
 
 ?>

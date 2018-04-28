@@ -6,7 +6,7 @@ $dj_fields = $templates_fields["dj_profile"];
 ?>
 <div class="cont_orders">
 	<separador><span>Eliminados en los últimos 20 días</span></separador>
-	<div class="djs_list table_container">
+	<div class="table_container">
 		<div class="list_header">
 			<?
 			foreach ($dj_fields as $campo => $fieldtype) {
@@ -70,7 +70,7 @@ $dj_fields = $templates_fields["dj_profile"];
 				}
 				?>
 				<div class="column dj_acciones">
-							<div><button>Editar</button><button>Restaurar</button><br><button>Eliminar permanentemente</button></div>
+							<div><button class="restaurar">Restaurar</button><br><button class="perma_delete">Eliminar permanentemente</button></div>
 						</div>			
 				</div>
 				<?

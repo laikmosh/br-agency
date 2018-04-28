@@ -9,6 +9,11 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.trash_container {
+	flex-direction: column-reverse;
+}
+
 .list_container {
 	display: block;
 	max-height: 250px;
@@ -19,15 +24,18 @@
  }
 
  .column {
- 	display: flex;
- 	justify-content: center;
- 	align-items: center;
- 	flex-direction: column;
- 	flex: 1;
- 	margin-left: 1px;
- 	padding: 5px 8px;
- 	box-sizing: border-box;
- 	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex: 1 1 0;
+	margin-left: 1px;
+	padding: 5px 8px;
+	box-sizing: border-box;
+	position: relative;
+	width: 0;
+	word-wrap: break-word;
+	white-space: normal;
  }
 
 .column:first-child {

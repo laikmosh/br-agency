@@ -6,8 +6,10 @@ $temp_id = $_POST["temp_id"];
 p_log("temp_id=".$temp_id);
 if ($temp_id != "null") {
 	$temp_id = $pages->get($temp_id);
-	$pages->delete($temp_id, true);
-	p_log("eliminar temp_id=".$temp_id);
+	if ($temp_id->template == "usr_images" ) {
+		$pages->delete($temp_id, true);
+		p_log("eliminar TEMPLATE=".$temp_id->template);
+	}
 }
 
 $upload_path = $config->paths->assets . 'files/temp/';

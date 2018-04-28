@@ -31,6 +31,18 @@ $templates_fields = array(
 		'profile_image'=>"FieldtypeImage",
 		'gallery'=>"FieldtypeImage",
 	),
+	"clientes" => array(
+		//Campos:
+		'djs'=>"FieldtypeText",
+		'nombre'=>"FieldtypeText",
+		'apellido'=>"FieldtypeText",
+		'email'=>"FieldtypeEmail",
+		'telefono'=>"FieldtypeText",
+		'evento'=>"FieldtypeText",
+		'fecha'=>"FieldtypeText",
+		'lugar'=>"FieldtypeText",
+		'mensaje'=>"FieldtypeText",
+	),
 );
 
 $paginas = array(
@@ -52,12 +64,12 @@ $paginas = array(
 		"template"=>"usr_images",
 		"parent"=>1,
 	),
-	// 2=>array(
-	// 	"nombre"=>"Clientes",
-	// 	"slug"=>"clientes",
-	// 	"template"=>"clientes",
-	// 	"parent"=>1,
-	// ),
+	4=>array(
+		"nombre"=>"Clientes",
+		"slug"=>"clientes",
+		"template"=>"clientes",
+		"parent"=>1,
+	),
 );
 
 ?>

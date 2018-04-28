@@ -1,0 +1,268 @@
+.login_page {
+ background: white;
+ width: 100vw;
+ height: 100vh;
+ position: fixed;
+ top: 0;
+ left: 0;
+ display: flex;   
+ overflow: auto;
+ justify-content: center;
+ align-items: center;
+} 
+
+.login_form {
+ margin: auto;
+ border: 1px var(--negro) solid;
+ border-radius: 0px;
+ padding: 20px 30px 0;   
+ min-width: 350px;
+ overflow: hidden;
+}
+
+.login_form input[type=checkbox] {
+    display: none;
+}
+
+.login_form input[type=checkbox] + label {
+    padding-left: 30px;
+    height: 20px;
+    display: inline-block;
+    line-height: 20px;
+    background-repeat: no-repeat;
+    background-size: 20px 40px;
+    background-position: 0px 0;
+    font-size: 13px;
+    vertical-align:middle;
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.login_form input[type=checkbox]:checked + label {
+    background-position: 0 -20px;
+}
+
+.login_error {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.form_footer_login {
+    background: var(--rojo);
+    position: relative;
+    width: calc(100% + 100px);
+    margin-left: -50px;
+    max-width: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+.form_footer_login button[type="submit"] {
+    background: var(--rojo);
+    color: var(--blanco);
+    padding: 8px 25px;
+    border: 1px solid var(--blanco);
+    font-size: 1.4em;
+    display: inline-block;
+    cursor: pointer;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.wait {
+    background-color: #abaeaf!important;
+    opacity: 0.8;
+    pointer-events: none;
+
+}
+
+/*------------------------------------*\
+        CAMBIAR CONTRASEÃƒâ€˜A
+\*------------------------------------*/
+
+.pass_out_shadow {
+    background-color: rgba(0,0,0,0.7);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+
+}
+
+.pass_out_shadow h1 {
+    font-family: din_alternateregular;
+    font-weight: initial  !important;
+    font-size: 2.3vw;
+    display: inline-block;
+    margin: 0;
+}
+
+.pass_out_shadow h2 {
+    font-family: din_alternateregular;
+    display: inline-block;
+    font-style: italic;
+    text-transform: capitalize;
+    width: auto;
+    font-size: 1.6vw;
+    font-weight: initial ;
+}
+
+.pass_out_shadow h3 {
+    font-family: din_alternateregular;
+    display: inline-block;
+    width: auto;
+    font-size: 1.4vw;
+}
+
+.pass_container {
+    flex-direction: row;
+    background-blend-mode: overlay;
+    width: 60vw;
+    max-height: 90vh;
+    height: 20vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translatey(-50%); 
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #191919;
+    color: white;
+    display: flex;
+    font-size: 1.5vw;
+    flex-wrap: wrap ;
+    background-image: url(/mibedroom/site/templates/img/crissxcross.png);
+    background-size: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+
+.pw_inputs {
+    max-height: 90vh;
+    height: 20vw;
+    background-color: #292929;
+    width: 50%;
+    margin-left: 0;
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 3vw;
+    box-shadow: inset -10px 0px 20px -5px rgba(0,0,0,0.5);
+    background-image: url(/mibedroom/site/templates/img/crissxcross.png);
+    background-size: 400px;
+}
+
+#pwd_strength {
+    max-height: 90vh;
+    height: 20vw;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    width: 50%;
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 0 50px 0 0;
+}
+
+#password, #password_confirm {
+color: white;
+padding: 0.8vw;
+font-size: 1.5vw;
+background-color: #212121;
+border-radius: 0 50px 50px 0;
+margin-right: 2vw;
+padding-right: 1.6vw;
+padding-left: 1.2vw;
+box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
+transition: all 0.5s;
+}
+
+#password_confirm {
+    background-color: #191919;
+}
+
+.lvl3, .lvl4, .lvl5, .mismatch, .validando {margin-top: 75px !important;}
+.lvl1 {background-color: #dfdfdf !important;}
+.lvl2, .mismatch {background-color: #9b9b9b !important;}
+.lvl3 {background-color: #ff5f5f !important;}
+.lvl4 {background-color: #2bff85 !important;}
+.lvl5 {background-color: #39acfc !important;}
+.validando {background-color: #ffaf02 !important;}
+
+.pw_submit {
+    background-color: #191919;
+    font-size: 1.8vw;
+    text-align: center;
+    padding: 5px 30px;
+    margin: 15px auto 0;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.fade_blink {
+    animation:fade_blink normal 1.5s infinite ease-in-out;
+    -webkit-animation:fade_blink normal 1.5s infinite ease-in-out;
+}
+
+@keyframes fade_blink {
+    0% {
+           background-color: #212121;
+    }
+    50% {
+           background-color: #3e3e3e;
+    }
+    100% {
+           background-color: #212121;
+    }
+}
+@-webkit-keyframes fade_blink {
+    0% {
+           background-color: #212121;
+    }
+    50% {
+           background-color: #3e3e3e;
+    }
+    100% {
+           background-color: #212121;
+    }
+}

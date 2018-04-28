@@ -5,7 +5,7 @@ if ($function == "") {
 	$function = $_POST["function"];
 }
 $conexion = false;
-require("functions/estructuras_data.php");
+require_once("functions/estructuras_data.php");
 include('functions/ajax/'.$function.'.php');
 if ($conexion == false) {
 	$respuesta->message = 'HTTP/1.1 500 No hubo conexion a '.$function.".php";
@@ -18,6 +18,7 @@ if ($conexion == false) {
 $respuesta->conexion = $conexion;
 
 $respuesta = json_encode($respuesta);
+p_log("Respuesta:",$respuesta);
 echo $respuesta;
 exit();
 ?>

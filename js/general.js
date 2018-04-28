@@ -1,5 +1,30 @@
 $(document).ready(function(){ 
-	$(document).on('click touchstart', '.grid_elem', function(event) {
+	$(document).on('click touchstart', '#logout', function(event) {
+		event.preventDefault();
+		var funcion = "logout";
+		var data = {};
+		ajx(funcion,data).done(function(value) {
+			console.log("logout");
+			console.dir(value);
+		  	location.reload();
+		})
+		.fail(function(error) {
+			console.log("logout");
+			console.dir(value);
+		});
+	});
+
+	$(document).on('click touchstart', 'html', function(event) {
+		// event.preventDefault();
+		var target = event.target.className;
+		console.log("name="+target);
+		if (target == "html") {
+			console.log("reset grid");
+			$(".selected").removeClass('selected');
+		}
+	});
+
+	$(document).on('click', '.grid_elem', function(event) {
 		$(".selected").removeClass('selected');
 		$(this).addClass('selected');
 	});
@@ -44,6 +69,9 @@ function ajx(funcion,data) {
             // return datos_ans;
        },
         error : function ajax_error(xhr, textStatus, errorThrown ) {
+        	if (xhr["responseJSON"]["login_check"] == "unlogged") {
+        		location.reload();
+        	}
 	        if (textStatus == 'timeout') {
 	            this.tryCount++;
 	            if (this.tryCount <= this.retryLimit) {
@@ -71,6 +99,10 @@ function form_to_json(data) {
 			var name = val["name"];
 			var value = val["value"];
 			 datos[name]=value;
+			 if (name == "reviewed[]") {
+			 	datos["djs"] = $("input[name='reviewed[]']:checked").map(function() {return this.value;}).get().join(':');
+			 	console.log("djs:"+datos[name]);
+			 }
 		});
 	return datos;
 };
@@ -83,5 +115,7 @@ function reset_fields() {
 	$(".generos + label").show();
 	$('form img').attr('src',"");
 	$('form .foto_descr').show();
+	$('.nullify').val("null");
+
 };
 
