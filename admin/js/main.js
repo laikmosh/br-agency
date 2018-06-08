@@ -46,7 +46,7 @@ $(document).ready(function(){
 			$("textarea[name=bio]").val(valores["bio"]);
 			$("input[name=temp_id]").val(id);
 			$("input[name=editing_id]").val(id);
-			$("#profile_image_uploader img").attr('src',valores["profile_image"][valores["profile_image"].length-1]);
+			$("#profile_image_uploader img").attr('src',valores["profile_image"]);
 			$('#profile_image_uploader .foto_descr').hide();
 			$('input:radio[name=venue]').val([valores["venue"]]);
 			$('input:radio[name=genero]').val([valores["genero"]]);
