@@ -11,5 +11,5 @@ $djs = $pages->find("template=dj_profile,parent=djs");
 		<?
 	}
 ?>
-<div class="book_button btn_popup" data-target="book">>Bookear</div>
+<div class="book_button btn_popup" data-target="book">Continuar ></div>
 </div>

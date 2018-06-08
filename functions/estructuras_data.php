@@ -19,6 +19,7 @@ $templates_fields = array(
 		'telefono'=>"FieldtypeText",
 		'edad'=>"FieldtypeText",
 		'location'=>"FieldtypeText",
+		'mixcloud'=>"FieldtypeText",
 		'bio'=>"FieldtypeText",
 		'venue'=>"FieldtypeText",
 		'genero'=>"FieldtypeText",

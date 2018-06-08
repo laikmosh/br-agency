@@ -2,7 +2,11 @@
 <html class="html">
 <head>
   <meta charset="UTF-8">
-  <title>Agency admin</title>
+  <?  if (($user->isLoggedin())) {  ?>
+        <title>Agency Admin</title>
+  <?  } else { ?>
+        <title>Agency</title>
+  <?  } ?>
   <!-- <link href="/img/icons/favicon.ico" rel="shortcut icon"> -->
 <!--   <link href="/img/icons/touch.png" rel="apple-touch-icon-precomposed"> -->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -30,4 +34,5 @@
   ';endif?>
   <link rel="stylesheet" type="text/css" href="<?=cacher('/agency/site/templates/css/general.css')?>">
   <script src="<?=cacher('/agency/site/templates/js/general.js')?>"></script>
+  <!-- <script src="//widget.mixcloud.com/media/js/widgetApi.js" type="text/javascript"></script> -->
   </head>

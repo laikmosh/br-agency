@@ -8,6 +8,7 @@ function grid_elem($dj,$is_admin) {
 	$location = $dj->location;
 	$edad = $dj->edad;
 	$bio = $dj->bio;
+	$mixcloud = $dj->mixcloud;
 	$venue = $dj->venue;
 	$genero = $dj->genero;
 	$lineup = $dj->lineup;
@@ -16,7 +17,8 @@ function grid_elem($dj,$is_admin) {
 	?>
 	<div class="grid_elem_info">
 		<div class="grid_elem_info_fixed">
-			<div class="elem_info_img" style="background-image: url(<?=$profile_img?>);"></div>
+			<div class="elem_info_img" style="background-image: url(<?=$profile_img?>);">
+			</div>
 			<div class="bio">
 				<h1><?=$dj_name?></h1>
 				<h3>[<?=$nombre?> <?=$apellido?>]</h3>
@@ -26,6 +28,20 @@ function grid_elem($dj,$is_admin) {
 			<div class="barra_lateral">
 				<?
 				if ($location) {
+					switch ($location) {
+						case 'cdmx':
+							$location = "Ciudad de México";
+							break;
+						case 'qro':
+							$location = "Querétaro";
+							break;
+						case 'cholula':
+							$location = "Cholula";
+							break;
+						case 'gdl':
+							$location = "Guadalajara";
+							break;
+					}
 					?>
 					<div><span class="cat">Ubicación:</span><span class="cat_val"><?=$location?></span></div>
 					<?
@@ -54,6 +70,7 @@ function grid_elem($dj,$is_admin) {
 				}
 				?>
 			</div>
+			<div class="mixcloud"><?=$mixcloud?></div>
 		</div>
 	</div>
 	<?

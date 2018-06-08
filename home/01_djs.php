@@ -15,7 +15,7 @@ $djs = $pages->find("template=dj_profile,parent=djs");
 			</div>
 		</div>
 		<div class="filter_type">
-			<span class="filter_tit">Venue</span>
+			<span class="filter_tit">Tipo de venue</span>
 			<line></line>
 			<div class="filter_opts">
 				<input type="radio" name="venue" value="all" id="ven_1" checked="true">		<label for="ven_1">All</label>
@@ -30,13 +30,16 @@ $djs = $pages->find("template=dj_profile,parent=djs");
 				<input type="radio" name="genero" value="all" id="gen_1" checked="true">	<label for="gen_1">All</label>
 				<input type="radio" name="genero" value="techno" id="gen_2">				<label class="fil_fil fil_ven fil_ven_underground" for="gen_2">Techno</label>
 				<input type="radio" name="genero" value="house" id="gen_3">					<label class="fil_fil fil_ven fil_ven_underground" for="gen_3">House</label>
-				<input type="radio" name="genero" value="trance" id="gen_4">				<label class="fil_fil fil_ven fil_ven_underground" for="gen_4">Trance</label>
-				<input type="radio" name="genero" value="psy-trance" id="gen_5">			<label class="fil_fil fil_ven fil_ven_underground" for="gen_5">Psy-trance</label>
-				<input type="radio" name="genero" value="experimental" id="gen_6">			<label class="fil_fil fil_ven fil_ven_underground" for="gen_6">Experimental</label>
+				<input type="radio" name="genero" value="experimental" id="gen_6">			<label class="fil_fil fil_ven fil_ven_underground" for="gen_6">Experimental/IDM</label>
+				<input type="radio" name="genero" value="trance" id="gen_4">				<label class="fil_fil fil_ven fil_ven_festival" for="gen_4">Trance</label>
+				<input type="radio" name="genero" value="psy-trance" id="gen_5">			<label class="fil_fil fil_ven fil_ven_festival" for="gen_5">Psy-trance</label>
 				<input type="radio" name="genero" value="edm" id="gen_7">					<label class="fil_fil fil_ven fil_ven_festival" for="gen_7">Edm</label>
 				<input type="radio" name="genero" value="trap" id="gen_8">					<label class="fil_fil fil_ven fil_ven_festival" for="gen_8">Trap</label>
 				<input type="radio" name="genero" value="hardstyle" id="gen_9">				<label class="fil_fil fil_ven fil_ven_festival" for="gen_9">Hardstyle</label>
 				<input type="radio" name="genero" value="moombahton" id="gen_10">			<label class="fil_fil fil_ven fil_ven_festival" for="gen_10">Moombahton</label>
+				<input type="radio" name="genero" value="dubstep" id="gen_11">			<label class="fil_fil fil_ven fil_ven_festival" for="gen_11">Dubstep</label>
+				<input type="radio" name="genero" value="reggaeton" id="gen_12">			<label class="fil_fil fil_ven fil_ven_festival" for="gen_12">Reggaeton</label>
+				<input type="radio" name="genero" value="bass" id="gen_12">			<label class="fil_fil fil_ven fil_ven_festival" for="gen_12">Bass</label>
 			</div>
 		</div>
 		<div class="filter_type">

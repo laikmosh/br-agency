@@ -48,5 +48,5 @@ function login_check($user) {
       //    exit();
       // }
    }
-}
+} 
 ?>

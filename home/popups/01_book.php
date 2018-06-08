@@ -62,7 +62,7 @@
 	<br>
 	<span><b>Al bookear nos contactaremos contigo para confirmar precios y disponibilidad de los DJs seleccionados</b></span>
 	<div class="form_footer">
-		<button class="none" type="submit">Bookear DJs</button> 
+		<button class="none" type="submit">Solicitar info</button> 
 	</div>
 </form>
 </div>
