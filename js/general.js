@@ -19,6 +19,8 @@ $(document).ready(function(){
 		var target = event.target.className;
 		console.log("name="+target);
 		if (target == "html") {
+			target = "/agency";
+			if ( $(".selected").length > 0 ) {history.pushState( { "target": target}, target, target); };
 			console.log("reset grid");
 			$(".selected").removeClass('selected');
 		}
@@ -27,6 +29,9 @@ $(document).ready(function(){
 	$(document).on('click', '.grid_elem', function(event) {
 		$(".selected").removeClass('selected');
 		$(this).addClass('selected');
+		var target = $(this).data('dj_name');
+		target = "/agency/"+target;
+		history.pushState( { "target": target}, target, target);
 	});
 
 	$(document).on('click touchstart', '.shadow', function(event) {

@@ -1,6 +1,6 @@
 <?
 
-function grid_elem($dj,$is_admin) {
+function grid_elem($dj,$is_admin,$dj_name_get) {
 	$profile_img = $dj->profile_image->last()->url;
 	$dj_name = $dj->dj_name;
 	$nombre = $dj->nombre;
@@ -12,7 +12,6 @@ function grid_elem($dj,$is_admin) {
 	$venue = $dj->venue;
 	$genero = $dj->genero;
 	$lineup = $dj->lineup;
-
 	ob_start();
 	?>
 	<div class="grid_elem_info">
@@ -74,10 +73,11 @@ function grid_elem($dj,$is_admin) {
 		</div>
 	</div>
 	<?
+	$sel;
 	$elem = ob_get_clean();
 	ob_start();
 	?>
-		<div class="grid_elem fil_ubi fil_ubi_<?=$location?> fil_ven fil_ven_<?=$venue?> fil_gen fil_gen_<?=$genero?> fil_lin fil_lin_<?=$lineup?>" id="dj_<?=$dj->id?>">
+		<div class="<?if (slugify($dj_name_get) == slugify($dj_name)) { echo "selected";}?> grid_elem fil_ubi fil_ubi_<?=$location?> fil_ven fil_ven_<?=$venue?> fil_gen fil_gen_<?=$genero?> fil_lin fil_lin_<?=$lineup?>" id="dj_<?=$dj->id?>" data-dj_name="<?=slugify($dj->dj_name)?>"> 
 			<?
 			echo $elem;
 			echo $elem;
