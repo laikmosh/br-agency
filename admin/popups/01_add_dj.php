@@ -16,9 +16,9 @@
 		        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
 		        <div class="img_progress"></div>
 		    </div>
-<!-- 		    <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
+		    <!-- <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
 		    	<input class="input_image input_image_multi" type="file" name="gallery[]" id="gallery" accept="image/jpg,image/jpeg,image/gif,image/png" multiple="multiple" />
-		    	<sticker>Presskit</sticker>
+		    	<sticker>Gallery</sticker>
 		        <div class="foto_descr foto_thumb">
 		            <div class="foto_descr_icono"><i class="fa fa-upload" aria-hidden="true"></i></div>
 		            <div class="foto_descr_texto">Arrastra una fotos del presskit, o haz click para seleccionar los archivos.</div>
@@ -27,9 +27,24 @@
 		        <div class="img_progress"></div>
 		    </div> -->
 		</form>
+
+		<span class="input_cont" style="padding: 20px">
+			<form id="presskit">
+				<input type="text" name="function" value="ajx_upload" hidden/>
+				<div class="file_progress_container">
+					<div class="file_progress_container_text">Seleccionar archivo...</div>
+					<div class="img_progress"></div>
+				</div>
+				<input type="file" name="presskit" id="presskit_input">
+				<div class="delete_elem"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+			</form>
+			<br>Formato PDF, Max: 8MB.<br>
+			<sticker>Presskit</sticker>
+		</span>
 	</div>
 <form id="add_new_dj" data-funcion="add_new_dj">
 	<input type="text" class="nullify" id="cont_temp_id" name="temp_id" value="null" hidden/>
+	<input type="text" class="nullify" id="cont_temp_id_pdf" name="temp_id_pdf" value="null" hidden/>
 	<input type="text" class="nullify" name="editing_id" value="null" hidden/>
 	<separador><span>Datos personales</span></separador>
 	<span class="input_cont input_cont_headline">
@@ -70,11 +85,10 @@
 		<textarea name="bio"></textarea>
 		<sticker>Bio</sticker>
 	</span>
-	<span class="input_cont">
+	<span class="input_cont" style="width: 100%; margin-bottom: 35px">
 		<input type="text" name="mixcloud">
 		<sticker>Mixcloud embed</sticker>
 	</span>
-	<br>
 	<span class="tit_label">Tipo de venue</span>
 	<div class="radios" id="cont_venue">
 		<input type="radio" name="venue" value="empty" checked>
@@ -141,13 +155,12 @@
 	</div>
 	<span class="tit_label">Lineup</span>
 	<div class="radios" id="cont_lineup">
-		<input type="radio" name="lineup" value="empty" checked>
 		<div class="radio">
-			<input type="radio" name="lineup" value="warmup" id="potencia_warmup">
+			<input type="checkbox" name="lineup" value="warmup" id="potencia_warmup">
 		    <label for="potencia_warmup">Warmup</label>
 	    </div>
 	    <div class="radio">
-		    <input type="radio" name="lineup" value="headliner" id="potencia_headliner">
+		    <input type="checkbox" name="lineup" value="headliner" id="potencia_headliner">
 		    <label for="potencia_headliner">Headliner</label>
 		</div>
 	</div>

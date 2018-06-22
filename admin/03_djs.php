@@ -8,8 +8,9 @@ $djs = $pages->find("template=dj_profile,parent=djs");
 	<separador><span>DJs</span></separador>
 	<div class="grid_container grid_container_djs">
 		<?
+			$dj_name_get = $input->urlSegment(1);
 			foreach ($djs as $key => $dj) {
-				$grid_elem = grid_elem($dj,$is_admin);
+				$grid_elem = grid_elem($dj,$is_admin,$dj_name_get);
 				echo $grid_elem;
 			}
 		?>

@@ -36,12 +36,11 @@ foreach ($campos as $campo => $fieldtype) {
 	$p->$campo=$datos[$campo];
 }
 $p->save();
+
+// AGREGAR PROFILE IMAGE SINGLE
 $images = $pages->get($datos["temp_id"])->profile_image->first()->filename;
-// $p->profile_image->deleteAll();
-// $p->save();
 $p->profile_image->add($images);
 $p->save();
-
 $temp_id = $datos["temp_id"];
 if ($temp_id != "null") {
 	$temp_id = $pages->get($temp_id);
@@ -50,6 +49,59 @@ if ($temp_id != "null") {
 		p_log("eliminar TEMPLATE=".$temp_id->template);
 	}
 }
+//FIN AGREGAR PROFILE IMAGE SINGLE
 
-$respuesta->dj_elem = grid_elem($p,true);
+// AGREGAR PDF SINGLE
+if ($datos["temp_id_pdf"] == "delete") {
+	$p->presskit->removeAll();
+	$p->save();
+} else {
+	$pdf = $pages->get($datos["temp_id_pdf"])->presskit->filename;
+	if ($pdf) {
+		p_log("pdf id=",$datos["temp_id_pdf"]);
+		$p->presskit->add($pdf);
+		$p->save();
+		$temp_id = $datos["temp_id_pdf"];
+		if ($temp_id != "null") {
+			$temp_id = $pages->get($temp_id);
+			if ($temp_id->template == "usr_images" ) {
+				$pages->delete($temp_id, true);
+				p_log("eliminar TEMPLATE=".$temp_id->template);
+			}
+		}
+	}
+}
+p_log("Linea");
+//FIN AGREGAR PDF SINGLE
+
+//carga de pdf
+$uploads = $_FILES;
+$upload_path = $config->paths->assets . 'files/temp/';
+foreach ($uploads as $file_fieldname => $data) {
+	$u = new ProcessWire\WireUpload($file_fieldname);
+	$u->setMaxFiles(15);
+	$u->setMaxFileSize(1*6024*6024);
+	$u->setOverwrite(false);
+	$u->setDestinationPath($upload_path);
+	$u->setValidExtensions(array('jpg', 'jpeg', 'gif', 'png', 'pdf'));
+	$files = $u->execute(); // execute upload and check for errors
+	if(!$u->getErrors()) {
+
+	    foreach ($files as $key => $filename) {
+	    	$image = $p->presskit->add($upload_path . $filename);
+	        unlink($upload_path . $filename);    
+	    }
+	        // save page
+		$p->save();
+	        // remove all tmp files uploaded
+	} else {
+	    foreach ($files as $key => $filename) {
+	        unlink($upload_path . $filename);    
+	    }
+	};
+}
+//fin carga pdf
+
+$respuesta->dj_elem = grid_elem($p,true,"empty");
+p_log("fin add/edit",$respuesta->dj_elem);
 ?>

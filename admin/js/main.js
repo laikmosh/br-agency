@@ -40,18 +40,22 @@ $(document).ready(function(){
 			$("input[name=email]").val(valores["email"]);
 			$("input[name=telefono]").val(valores["telefono"]);
 			$("input[name=edad]").val(valores["edad"]);
-			// $("input[name=location]").val(valores["location"]);
-			// $('input:select[name=location]').val([valores["location"]]);
 			$('select[name=location]').val(valores["location"]).prop('selected', true);
 			$("textarea[name=bio]").val(valores["bio"]);
 			$("input[name=temp_id]").val(id);
+			$("input[name=temp_id_pdf]").val(id);
 			$("input[name=editing_id]").val(id);
 			$("#profile_image_uploader img").attr('src',valores["profile_image"]);
 			$('#profile_image_uploader .foto_descr').hide();
 			$('input:radio[name=venue]').val([valores["venue"]]);
 			$('input:radio[name=genero]').val([valores["genero"]]);
-			$('input:radio[name=lineup]').val([valores["lineup"]]);
 			$(".btn_popup").click();
+			$(".file_progress_container_text").html(valores["presskit"]);
+			valores["lineup"] = valores["lineup"].split(":");
+			valores["lineup"].forEach(function(lineup) {
+	          $("#potencia_"+lineup).prop( "checked", true );
+	        });
+			// $('input:radio[name=lineup]').val([valores["lineup"]]);
 		});
 	});
 
@@ -145,7 +149,7 @@ var progress = function(parent){
 
 	        var Percentage = (current * 100)/max;
 	        var Percentage_left = 100 - Percentage;
-	        $( "#"+parent+" .img_progress" ).css("width",Percentage_left+"%"); 
+	        $( "#"+parent+" .img_progress" ).css("width",Percentage_left+"%").show(); 
 	        console.log("LOADING... "+Percentage_left+"% left");
 
 
@@ -162,6 +166,7 @@ var progress = function(parent){
 	    }  
 	}
  }
+
 $("#images_profile").on('submit',(function(e) {
   e.preventDefault();
   var parent = "images_profile";
@@ -199,10 +204,57 @@ $("#images_profile").on('submit',(function(e) {
   }); 
 })); 
 
+$("#presskit").on('submit',(function(e) {
+var size = formatBytes(document.getElementById('presskit_input').files[0].size);
+var name = document.getElementById('presskit_input').files[0].name;
+console.log("inicia carga pdf");
+  e.preventDefault();
+  var parent = "presskit";
+  console.log("submitting="+parent);
+  $.ajax({
+	url: location.href,
+	type: 'POST',
+	dataType: 'json',
+  data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+  contentType: false,       // The content type used when sending data to the server.
+  cache: false,             // To unable request pages to be cached
+  processData:false,        // To send DOMDocument or non processed data file it is set to false
+  xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progress(parent), false);
+                }
+                return myXhr;
+        },
+  beforeSend: function() {
+			console.log("Función="+parent);
+			// console.dir(datos_ans);
+ },
+ success: function respuesta(datos_ans) {
+            console.dir(datos_ans);
+            var temp_id = datos_ans["temp_img"];
+            console.log('input[name=temp_id]='+temp_id);
+            $("input[name=temp_id_pdf]").val(temp_id);
+            $(".file_progress_container_text").html("<b>"+name+"</b> "+size);
+ },
+    error: function (response) {
+      // error
+      console.dir(response);
+      console.log(response);
+    }  
+  }); 
+})); 
+	$(document).on('change', 'input[name=presskit]', function(event) {
+		console.log("subiendo pdf");
+		$( '#presskit' ).submit();
+	});
 
 
 
-
+	$(document).on("click",".delete_elem", function(event) {
+		$("input[name=temp_id_pdf]").val("delete");
+        $(".file_progress_container_text").html("Seleccionar archivo...");
+	});
 
 
 	$(document).on('change', 'input[name=venue]', function(event) {

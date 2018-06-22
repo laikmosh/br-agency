@@ -9,6 +9,13 @@ foreach ($campos as $campo => $fieldtype) {
 		foreach ($valor as $key => $value) {
 			$respuesta->dj->$campo = $p->$campo->url.$key;
 		}
+	} elseif ($fieldtype == "FieldtypeFile") {
+		foreach ($valor as $key => $value) {
+			$respuesta->dj->$campo = "<b>".$p->$campo->name."</b> ".$p->$campo->filesizeStr;
+			if ($p->$campo->name == "") {
+				$respuesta->dj->$campo = "";
+			}
+		}
 	} else {
 		$respuesta->dj->$campo = $p->$campo;
 	}

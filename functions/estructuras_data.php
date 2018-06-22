@@ -24,6 +24,7 @@ $templates_fields = array(
 		'venue'=>"FieldtypeText",
 		'genero'=>"FieldtypeText",
 		'lineup'=>"FieldtypeText",
+		'presskit'=>"FieldtypeFile",
 		'profile_image'=>"FieldtypeImage",
 		'gallery'=>"FieldtypeImage",
 	),
@@ -31,6 +32,7 @@ $templates_fields = array(
 		//Campos:
 		'profile_image'=>"FieldtypeImage",
 		'gallery'=>"FieldtypeImage",
+		'presskit'=>"FieldtypeFile",
 	),
 	"clientes" => array(
 		//Campos:

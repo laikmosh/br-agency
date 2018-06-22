@@ -30,7 +30,7 @@ foreach ($uploads as $file_fieldname => $data) {
 	$u->setMaxFileSize(1*6024*6024);
 	$u->setOverwrite(false);
 	$u->setDestinationPath($upload_path);
-	$u->setValidExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+	$u->setValidExtensions(array('jpg', 'jpeg', 'gif', 'png', 'pdf'));
 	$files = $u->execute(); // execute upload and check for errors
 
 	if(!$u->getErrors()) {

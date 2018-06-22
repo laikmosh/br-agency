@@ -1,4 +1,13 @@
 /* sección add new dj */ 
+
+.delete_elem {
+	position: absolute;
+	right: 10px;
+	zoom: 1.2;
+	top: 15px;
+	cursor: pointer;
+}
+
 .cont_new_dj {
 	display: flex;
 	flex-direction: row;
@@ -222,7 +231,6 @@ max-width: 180px;
 	width: 100%;
 	pointer-events: none;
 	color: var(--blanco);
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 3em;

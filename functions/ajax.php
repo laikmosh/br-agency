@@ -18,7 +18,7 @@ if ($conexion == false) {
 $respuesta->conexion = $conexion;
 
 $respuesta = json_encode($respuesta);
-p_log("Respuesta:",$respuesta);
+p_log("Fin de ajax Respuesta:",$respuesta);
 echo $respuesta;
 exit();
 ?>

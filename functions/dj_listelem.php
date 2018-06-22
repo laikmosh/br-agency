@@ -8,10 +8,12 @@ function grid_elem($dj,$is_admin,$dj_name_get) {
 	$location = $dj->location;
 	$edad = $dj->edad;
 	$bio = $dj->bio;
+	$presskit = $dj->presskit;
 	$mixcloud = $dj->mixcloud;
 	$venue = $dj->venue;
 	$genero = $dj->genero;
 	$lineup = $dj->lineup;
+	$lineup_array = explode(":", $lineup);
 	ob_start();
 	?>
 	<div class="grid_elem_info">
@@ -23,6 +25,15 @@ function grid_elem($dj,$is_admin,$dj_name_get) {
 				<h3>[<?=$nombre?> <?=$apellido?>]</h3>
 				<h2>Bio.</h2>
 				<p><?=$bio?></p>
+				<?
+				if ($presskit) {
+					?>
+						<br>
+						Presskit:<br>
+						<a href="<?=$dj->presskit->url?>" target="_blank"><i class="presskit_display fa fa-file-pdf-o" aria-hidden="true">&nbsp;<?=$presskit?></i></a>
+					<?
+				}
+				?>
 			</div>
 			<div class="barra_lateral">
 				<?
@@ -77,7 +88,12 @@ function grid_elem($dj,$is_admin,$dj_name_get) {
 	$elem = ob_get_clean();
 	ob_start();
 	?>
-		<div class="<?if (slugify($dj_name_get) == slugify($dj_name)) { echo "selected";}?> grid_elem fil_ubi fil_ubi_<?=$location?> fil_ven fil_ven_<?=$venue?> fil_gen fil_gen_<?=$genero?> fil_lin fil_lin_<?=$lineup?>" id="dj_<?=$dj->id?>" data-dj_name="<?=slugify($dj->dj_name)?>"> 
+		<div class="<?if (slugify($dj_name_get) == slugify($dj_name)) { echo "selected";}?> grid_elem fil_ubi fil_ubi_<?=$location?> fil_ven fil_ven_<?=$venue?> fil_gen fil_gen_<?=$genero?> fil_lin <?
+		foreach ($lineup_array as $key => $value) {
+			echo " fil_lin_".$value;
+		}
+		?>
+		?>" id="dj_<?=$dj->id?>" data-dj_name="<?=slugify($dj->dj_name)?>"> 
 			<?
 			echo $elem;
 			echo $elem;

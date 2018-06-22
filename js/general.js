@@ -1,4 +1,5 @@
 $(document).ready(function(){ 
+
 	$(document).on('click touchstart', '#logout', function(event) {
 		event.preventDefault();
 		var funcion = "logout";
@@ -17,10 +18,10 @@ $(document).ready(function(){
 	$(document).on('click touchstart', 'html', function(event) {
 		// event.preventDefault();
 		var target = event.target.className;
-		console.log("name="+target);
+		// console.log("name="+target);
 		if (target == "html") {
 			target = "/agency";
-			if ( $(".selected").length > 0 ) {history.pushState( { "target": target}, target, target); };
+			if ( $(".selected").length > 0 && $(".cont_new_dj").length == 0) {history.pushState( { "target": target}, target, target); };
 			console.log("reset grid");
 			$(".selected").removeClass('selected');
 		}
@@ -31,7 +32,7 @@ $(document).ready(function(){
 		$(this).addClass('selected');
 		var target = $(this).data('dj_name');
 		target = "/agency/"+target;
-		history.pushState( { "target": target}, target, target);
+		if ( $(".cont_new_dj").length > 0 ) {} else { history.pushState( { "target": target}, target, target); };
 	});
 
 	$(document).on('click touchstart', '.shadow', function(event) {
@@ -74,6 +75,13 @@ function ajx(funcion,data) {
             // return datos_ans;
        },
         error : function ajax_error(xhr, textStatus, errorThrown ) {
+	        if (xhr.status == 500) {
+	            console.error("Fallo en servidor, error 500: "+errorThrown+" : "+textStatus);
+	            console.dir(xhr);
+	        } else {
+	            console.error("Error: "+errorThrown+" : "+textStatus);
+	            console.dir(xhr);
+	        }
         	if (xhr["responseJSON"]["login_check"] == "unlogged") {
         		location.reload();
         	}
@@ -83,13 +91,6 @@ function ajx(funcion,data) {
 	                console.error("Tiempo excedido, reintento "+this.tryCount+" de "+this.retryLimit+").");
 	                $.ajax(this);
 	            }            
-	        }
-	        if (xhr.status == 500) {
-	            console.error("Fallo en servidor, error 500: "+errorThrown+" : "+textStatus);
-	            console.dir(xhr);
-	        } else {
-	            console.error("Error: "+errorThrown+" : "+textStatus);
-	            console.dir(xhr);
 	        }
 	    }
     }); //fin de ajax
@@ -108,6 +109,10 @@ function form_to_json(data) {
 			 	datos["djs"] = $("input[name='reviewed[]']:checked").map(function() {return this.value;}).get().join(':');
 			 	console.log("djs:"+datos[name]);
 			 }
+			 if (name == "lineup") {
+			 	datos["lineup"] = $("input[name='lineup']:checked").map(function() {return this.value;}).get().join(':');
+			 	console.log("lineup:"+datos["lineup"]);
+			}
 		});
 	return datos;
 };
@@ -123,4 +128,11 @@ function reset_fields() {
 	$('.nullify').val("null");
 
 };
+
+	function formatBytes(bytes) {
+	    if(bytes < 1024) return bytes + " Bytes";
+	    else if(bytes < 1048576) return(bytes / 1024).toFixed(1) + " KB";
+	    else if(bytes < 1073741824) return(bytes / 1048576).toFixed(1) + " MB";
+	    else return(bytes / 1073741824).toFixed(2) + " GB";
+	};
 
