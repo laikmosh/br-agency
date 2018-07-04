@@ -1,7 +1,7 @@
-<div class="popup add_dj">
+<div id="add_dj_scroll" class="popup add_dj">
 	<h1>Agregar DJ</h1>
 	<div>
-		<separador><span>Presskit</span></separador>
+		<separador id="presskits"><span>Presskit</span></separador>
 	   <!-- tag para multi: multiple="multiple" agregar [] en name-->
 	   <form id="images_profile">
 	    	<input type="text" name="function" value="ajx_upload" hidden/>
@@ -16,16 +16,17 @@
 		        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
 		        <div class="img_progress"></div>
 		    </div>
-		    <!-- <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
-		    	<input class="input_image input_image_multi" type="file" name="gallery[]" id="gallery" accept="image/jpg,image/jpeg,image/gif,image/png" multiple="multiple" />
+
+		    <!-- inicia gallery -->
+		    <div class="foto_label gallery_label input_cont" id="gallery_image_uploader">
 		    	<sticker>Gallery</sticker>
-		        <div class="foto_descr foto_thumb">
-		            <div class="foto_descr_icono"><i class="fa fa-upload" aria-hidden="true"></i></div>
-		            <div class="foto_descr_texto">Arrastra una fotos del presskit, o haz click para seleccionar los archivos.</div>
-		        </div>
-		        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
-		        <div class="img_progress"></div>
-		    </div> -->
+		    	<div id="frame_edit_cont" style="height: 100%">
+		        	<span class="gallery_pre">Guarda el perfil para agregar fotos a la galería</span>
+		    	</div>
+		    </div>
+		    <!-- termina galllery -->
+
+
 		</form>
 
 		<span class="input_cont" style="padding: 20px">

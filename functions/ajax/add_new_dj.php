@@ -40,6 +40,19 @@ $p->save();
 // AGREGAR PROFILE IMAGE SINGLE
 $images = $pages->get($datos["temp_id"])->profile_image->first()->filename;
 $p->profile_image->add($images);
+
+$source = $pages->get($datos["temp_id"]);
+$dest = $p;
+$dest->of(false);
+$source->of(false);
+$gallery = $source->gallery;
+p_log($gallery);
+foreach ($gallery as $key => $file) {
+	$dest->gallery->add("/agency/site/assets/files/".$datos["temp_id"]."/".$file);
+}
+// $dest->gallery->add($source->gallery);
+// p_log($source->gallery);
+
 $p->save();
 $temp_id = $datos["temp_id"];
 if ($temp_id != "null") {
@@ -56,17 +69,19 @@ if ($datos["temp_id_pdf"] == "delete") {
 	$p->presskit->removeAll();
 	$p->save();
 } else {
-	$pdf = $pages->get($datos["temp_id_pdf"])->presskit->filename;
-	if ($pdf) {
-		p_log("pdf id=",$datos["temp_id_pdf"]);
-		$p->presskit->add($pdf);
-		$p->save();
-		$temp_id = $datos["temp_id_pdf"];
-		if ($temp_id != "null") {
-			$temp_id = $pages->get($temp_id);
-			if ($temp_id->template == "usr_images" ) {
-				$pages->delete($temp_id, true);
-				p_log("eliminar TEMPLATE=".$temp_id->template);
+	if ($datos["temp_id_pdf"] != "null") {
+		$pdf = $pages->get($datos["temp_id_pdf"])->presskit->filename;
+		if ($pdf) {
+			p_log("pdf id=",$datos["temp_id_pdf"]);
+			$p->presskit->add($pdf);
+			$p->save();
+			$temp_id = $datos["temp_id_pdf"];
+			if ($temp_id != "null") {
+				$temp_id = $pages->get($temp_id);
+				if ($temp_id->template == "usr_images" ) {
+					$pages->delete($temp_id, true);
+					p_log("eliminar TEMPLATE=".$temp_id->template);
+				}
 			}
 		}
 	}
@@ -103,5 +118,6 @@ foreach ($uploads as $file_fieldname => $data) {
 //fin carga pdf
 
 $respuesta->dj_elem = grid_elem($p,true,"empty");
-p_log("fin add/edit",$respuesta->dj_elem);
+$respuesta->id = $p->id;
+// p_log("fin add/edit",$respuesta->dj_elem);
 ?>

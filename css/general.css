@@ -1,4 +1,63 @@
 /*SECCION GRID*/
+.lightbox {
+	width: 90%!important;
+    min-width: 350px;
+    min-height: 90vh!important;
+}
+.gallery_img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    display: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: black;
+}
+
+.gallery_img.activ {
+	display: initial;
+}
+
+.gallery_thumbs_cont {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 25px;
+	opacity: 0.5;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.gallery_thumb {
+    max-width: 25px;
+    max-height: 25px;
+    height: 25px;
+    width: 25px;
+    background-size: cover;
+    background-position: 50%;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.gallery_thumbs_cont:hover {
+	height: 65px;
+	opacity: 1;
+}
+
+.gallery_thumbs_cont:hover .gallery_thumb:hover {
+    max-width: 65px;
+    max-height: 65px;
+    height: 65px;
+    width: 65px;
+}
+
 .mixcloud {
 	flex-basis: 100%!important;
 }
@@ -108,6 +167,7 @@ strech-elem {
 	padding: 10px 0;
 	display: flex;
 	flex-wrap: wrap;
+	cursor: default;
 }
 
 .grid_elem_info_fixed * {
@@ -122,7 +182,7 @@ min-height: 300px;
 max-height: 45vw;
 background-position: 50%;
 background-size: cover;
-pointer-events: none;
+position: relative;
 }
 
 /*responsive local conditional*/
@@ -714,6 +774,7 @@ h1 {
 	padding: 20px;
 	margin: auto;
 	opacity: 0;
+	display: none;
 	pointer-events: none;
 	cursor: initial;
 	box-shadow: 0 0 3px rgba(0,0,0,.3);
@@ -756,6 +817,7 @@ h1 {
 
 .shadow  .active {
 	opacity: 1;
+	display: initial;
 	pointer-events: initial;
 	position: relative;
 }

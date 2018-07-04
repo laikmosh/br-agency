@@ -155,7 +155,25 @@ flex: 2;
 flex:4;
 margin-right: 0em;
 max-width: inherit;
-display: none;
+/*display: none;*/
+padding: 15px;
+}
+
+.gallery_pre {
+background: var(--gris);
+text-align: center;
+padding: 6px;
+color: white;
+width: 100%;
+font-size: 120%;
+box-sizing: border-box;
+position: absolute;
+}
+
+#frame_edit_cont {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .foto_label img {

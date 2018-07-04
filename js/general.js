@@ -55,6 +55,48 @@ $(document).ready(function(){
 		$(".shadow").removeClass('hidden');
 	});
 
+	$(document).on('click touchstart', '.gallery_thumb', function(event) {
+		event.preventDefault();
+		var gallery = $(this).data('gallery');
+		var key = $(this).data('key');
+		var data = {
+			"gallery":gallery,
+			"key":key
+		};
+		var funcion = "gallery";
+		ajx(funcion,data).done(function(value) {
+			console.log("respuesta");
+			console.dir(value);
+			var gallery = value["gallery"]
+			$(".lightbox").html(gallery);
+		})
+		// .fail(function(error) {
+		// 	console.log("logout");
+		// 	console.dir(value);
+		// });
+	});
+
+$(document).keydown(function(e){
+    if (e.keyCode > 36 && e.keyCode < 41) 
+      console.log("presionado:"+e.keyCode);
+  if (e.keyCode == 39) {
+      var $next = $(".gallery_img.activ").removeClass('activ').next(".gallery_img");  
+      if ($next.length) {
+      	$next.addClass('activ');
+      } else {
+      	$(".gallery_img:first").addClass('activ');
+      }
+      }   
+        if (e.keyCode == 37) {
+      var $next = $(".gallery_img.activ").removeClass('activ').prev(".gallery_img");  
+      if ($next.length) {
+      	$next.addClass('activ');
+      } else {
+      	$(".gallery_img:last").addClass('activ');
+      }
+      }     
+});
+
 });//fin de documento
 
 function ajx(funcion,data) {
@@ -82,9 +124,11 @@ function ajx(funcion,data) {
 	            console.error("Error: "+errorThrown+" : "+textStatus);
 	            console.dir(xhr);
 	        }
-        	if (xhr["responseJSON"]["login_check"] == "unlogged") {
-        		location.reload();
-        	}
+	     	if (xhr) {
+	        	if (xhr["responseJSON"]["login_check"] == "unlogged") {
+	        		location.reload();
+	        	}
+	        }
 	        if (textStatus == 'timeout') {
 	            this.tryCount++;
 	            if (this.tryCount <= this.retryLimit) {
@@ -126,7 +170,7 @@ function reset_fields() {
 	$('form img').attr('src',"");
 	$('form .foto_descr').show();
 	$('.nullify').val("null");
-
+	$("#frame_edit_cont").html('<span class="gallery_pre">Guarda el perfil para agregar fotos a la galería</span>');
 };
 
 	function formatBytes(bytes) {
@@ -135,4 +179,5 @@ function reset_fields() {
 	    else if(bytes < 1073741824) return(bytes / 1048576).toFixed(1) + " MB";
 	    else return(bytes / 1073741824).toFixed(2) + " GB";
 	};
+
 

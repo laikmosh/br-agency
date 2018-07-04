@@ -17,5 +17,6 @@ require_once("footer.php");
 <div class="shadow hidden" id="shadow">
 	<?
 	require_once("admin/popups/01_add_dj.php");
+	require_once("home/popups/lightbox.php");
 	?>
 </div>

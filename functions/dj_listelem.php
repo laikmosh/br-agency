@@ -19,6 +19,19 @@ function grid_elem($dj,$is_admin,$dj_name_get) {
 	<div class="grid_elem_info">
 		<div class="grid_elem_info_fixed">
 			<div class="elem_info_img" style="background-image: url(<?=$profile_img?>);">
+			<div class="gallery_thumbs_cont">
+				<?
+				foreach ($dj->gallery as $key => $image) {
+					?>
+					<div style="background-image: url('<?=$image->width(70)->url?>')" class="gallery_thumb btn_popup" 
+						data-target="lightbox"
+						data-gallery="<?=$dj->id?>"
+						data-key="<?=$key?>"
+						></div>
+					<?
+				}
+				?>
+			</div>
 			</div>
 			<div class="bio">
 				<h1><?=$dj_name?></h1>
