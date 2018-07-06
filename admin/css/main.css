@@ -1,5 +1,7 @@
 /* sección add new dj */ 
-
+.presskit_display {
+	word-wrap: break-word;
+}
 .delete_elem {
 	position: absolute;
 	right: 10px;

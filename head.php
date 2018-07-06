@@ -1,12 +1,46 @@
 <!doctype html>
 <html class="html">
 <head>
+  <script type="text/javascript">
+      var name_get = "";
+  </script>
   <meta charset="UTF-8">
-  <?  if (($user->isLoggedin())) {  ?>
-        <title>Agency Admin</title>
-  <?  } else { ?>
-        <title>Agency</title>
-  <?  } ?>
+  <?  
+  $dj_name_get = $input->urlSegment(1);
+  $meta_title = "Agency - el bedroom";
+  $meta_image ="http://www.elbedroom.mx/thumbs/home_thumb.png";
+  $meta_description = "Agencia de DJs de el bedroom";
+  $meta_locale ="es_ES";
+  $meta_type ="website";
+  $meta_url ="http://www.elbedroom.mx/agency";
+  $meta_site_name ="Agency - el bedroom";
+
+  if ($is_admin) { 
+    $meta_title = "Agency Admin";
+  } 
+
+  if (strlen($dj_name_get) >= 4 && $is_admin != true) { 
+    $dj = $pages->get("name%=$dj_name_get");
+    $meta_title = $dj->dj_name.": ".$meta_title;
+    $meta_image = $dj->profile_image->last()->url;
+    $meta_description = $dj->bio;
+    $meta_url = $meta_url."/".$dj_name_get;
+    ?>
+    <script type="text/javascript">
+      var name_get = <?=$dj->id?>;
+    </script>
+    <?
+  } 
+
+  ?>
+<title><?=$meta_title?></title>
+<meta property="og:image" content="<?=$meta_image?>">
+<meta property="og:title" content="<?=$meta_title?>">
+<meta property="og:description" content="<?=$meta_description?>">
+<meta property="og:locale" content="<?=$meta_locale?>">
+<meta property="og:type" content="<?=$meta_type?>">
+<meta property="og:url" content="<?=$meta_url?>">
+<meta property="og:site_name" content="<?=$meta_site_name?>">
   <!-- <link href="/img/icons/favicon.ico" rel="shortcut icon"> -->
 <!--   <link href="/img/icons/touch.png" rel="apple-touch-icon-precomposed"> -->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />

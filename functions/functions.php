@@ -1,5 +1,4 @@
 <?php
-
 require_once("functions/dj_listelem.php");
 if($config->ajax) {
   require_once("login/login.php");

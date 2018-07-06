@@ -79,13 +79,15 @@ input[name="selected"]:checked + .selected_dj {
 
 .cart_cont {
 	position: fixed;
-	width: calc(100% - 30px);
-	max-width: 994px;
+	width: 100vw;
+	left: 0;
 	margin: auto;
 	bottom: -2px;
 	display: flex;
 	justify-content: flex-end;
 	padding: 0px;
+	z-index: 2;
+	transform: translate3d(0, 0, 1100px);
 	background: var(--blanco);
 	box-sizing: border-box;
 	border-top: 2px solid var(--rojo);

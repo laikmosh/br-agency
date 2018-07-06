@@ -1,5 +1,26 @@
 $(document).ready(function(){ 
-
+	if (name_get != "") {
+		console.log("name_get="+name_get);
+		// $("#dj_"+name_get+".btn_popup").click();
+		var target = $("#dj_"+name_get).data('target');
+		console.log("target="+target);
+		$(".popup."+target).addClass('active');
+		$("general").addClass('blur');
+		$(".shadow").removeClass('hidden');
+		var funcion = "dj_page";
+		var data = {
+			"id":name_get
+		};
+		ajx(funcion,data).done(function(value) {
+			console.log("Ans:");
+			console.dir(value);
+			$(".dj_page").html(value["dj_page"]);
+		})
+		.fail(function(error) {
+			console.log("ans");
+			console.dir(value);
+		});
+	};
 	$(document).on('click touchstart', '#logout', function(event) {
 		event.preventDefault();
 		var funcion = "logout";
@@ -33,6 +54,21 @@ $(document).ready(function(){
 		var target = $(this).data('dj_name');
 		target = "/agency/"+target;
 		if ( $(".cont_new_dj").length > 0 ) {} else { history.pushState( { "target": target}, target, target); };
+
+		var name_get = $(this).data('id');
+		var funcion = "dj_page";
+		var data = {
+			"id":name_get
+		};
+		ajx(funcion,data).done(function(value) {
+			console.log("Ans:");
+			console.dir(value);
+			$(".dj_page").html(value["dj_page"]);
+		})
+		.fail(function(error) {
+			console.log("ans");
+			console.dir(value);
+		});
 	});
 
 	$(document).on('click touchstart', '.shadow', function(event) {
@@ -41,18 +77,42 @@ $(document).ready(function(){
 		var shadow_width = $(".active").width();
 		var shadow_height = $(".active").height();
 		if (target == "shadow") {
-			reset_fields();
+			if ($(".lightbox").hasClass('active')) {
+				$(".lightbox").removeClass('active');
+				$(".dj_page").addClass('active');
+			} else {
+				reset_fields();
+			}
 		}
 		if (event.offsetX > shadow_width && event.offsetY < 24) {
-			reset_fields();
+			if ($(".lightbox").hasClass('active')) {
+				$(".lightbox").removeClass('active');
+				$(".dj_page").addClass('active');
+			} else {
+				reset_fields();
+			}
 		}
 	});
 	$(document).on('click touchstart', '.btn_popup', function(event) {
 		event.preventDefault();
+		$(".popup").removeClass('active');
+		$("general").removeClass('blur');
+		$(".shadow").addClass('hidden');
 		var target = $(this).data('target');
+		console.log("target="+target);
 		$(".popup."+target).addClass('active');
 		$("general").addClass('blur');
 		$(".shadow").removeClass('hidden');
+	});
+
+	$(document).on('click touchstart', '.popup', function(e) {
+        var posX = $(".popup.active").offset().left + $(".popup.active").width(),
+            posY = $(".popup.active").offset().top;
+            posX = parseInt(Math.abs(e.pageX - posX)),
+            posY = parseInt(e.pageY - posY);
+        if (posX <= 25 && posY <= 25) {
+        	$(".shadow").click();
+        }
 	});
 
 	$(document).on('click touchstart', '.gallery_thumb', function(event) {
@@ -171,13 +231,16 @@ function reset_fields() {
 	$('form .foto_descr').show();
 	$('.nullify').val("null");
 	$("#frame_edit_cont").html('<span class="gallery_pre">Guarda el perfil para agregar fotos a la galería</span>');
+	$(".dj_page").html('<span class="loading">Cargando...</span>');
+	target = "/agency";
+	if ( $(".selected").length > 0 && $(".cont_new_dj").length == 0) {history.pushState( { "target": target}, target, target); };
 };
 
-	function formatBytes(bytes) {
-	    if(bytes < 1024) return bytes + " Bytes";
-	    else if(bytes < 1048576) return(bytes / 1024).toFixed(1) + " KB";
-	    else if(bytes < 1073741824) return(bytes / 1048576).toFixed(1) + " MB";
-	    else return(bytes / 1073741824).toFixed(2) + " GB";
-	};
+function formatBytes(bytes) {
+    if(bytes < 1024) return bytes + " Bytes";
+    else if(bytes < 1048576) return(bytes / 1024).toFixed(1) + " KB";
+    else if(bytes < 1073741824) return(bytes / 1048576).toFixed(1) + " MB";
+    else return(bytes / 1073741824).toFixed(2) + " GB";
+};
 
 

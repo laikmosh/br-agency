@@ -1,4 +1,4 @@
-
+ 
 $(document).ready(function(){
 
 	$(document).on('click touchstart', '.restaurar', function(event) {
@@ -42,6 +42,7 @@ $(document).ready(function(){
 			$("input[name=edad]").val(valores["edad"]);
 			$('select[name=location]').val(valores["location"]).prop('selected', true);
 			$("textarea[name=bio]").val(valores["bio"]);
+			$("input[name=mixcloud]").val(valores["mixcloud"]);
 			$("input[name=temp_id]").val(id);
 			$("input[name=temp_id_pdf]").val(id);
 			$("input[name=editing_id]").val(id);
@@ -49,7 +50,7 @@ $(document).ready(function(){
 			$('#profile_image_uploader .foto_descr').hide();
 			$('input:radio[name=venue]').val([valores["venue"]]);
 			$('input:radio[name=genero]').val([valores["genero"]]);
-			$(".btn_popup").click();
+			$(".cont_new_dj .btn_popup").click();
 			$(".file_progress_container_text").html(valores["presskit"]);
 			valores["lineup"] = valores["lineup"].split(":");
 			valores["lineup"].forEach(function(lineup) {
@@ -291,7 +292,7 @@ $(document).on('submit', '#add_new_dj', function(event) {
 		}
 		$("#dj_"+id).click();
 		var editing = $("input[name=editing_id]").val();
-		if (!editing == "null") {
+		if (editing != "null") {
 			setTimeout(function() {
 				$("#add_new_dj button").removeClass('saved');
 				reset_fields();
@@ -299,6 +300,8 @@ $(document).on('submit', '#add_new_dj', function(event) {
 		} else {
 			var iframe = '<iframe class="pw-modal-window ui-dialog-content ui-widget-content" frameborder="0" src="/agency/processwire/page/edit/?id='+value["id"]+'&amp;fields=gallery&amp;modal=1" id="pw-modal-window-1" style="height: 100%;width: 100%;" id="frame_edit"></iframe>'
 			$("#frame_edit_cont").html(iframe);
+			$("input[name=editing_id]").val(value["id"]);
+			$("input[name=temp_id]").val(value["id"]);
 			setTimeout(function(){ 
 				$('#shadow').scrollTop(0);
 				$("#add_new_dj button").removeClass('saved');

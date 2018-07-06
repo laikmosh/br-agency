@@ -41,15 +41,15 @@ $p->save();
 $images = $pages->get($datos["temp_id"])->profile_image->first()->filename;
 $p->profile_image->add($images);
 
-$source = $pages->get($datos["temp_id"]);
-$dest = $p;
-$dest->of(false);
-$source->of(false);
-$gallery = $source->gallery;
-p_log($gallery);
-foreach ($gallery as $key => $file) {
-	$dest->gallery->add("/agency/site/assets/files/".$datos["temp_id"]."/".$file);
-}
+// $source = $pages->get($datos["temp_id"]);
+// $dest = $p;
+// $dest->of(false);
+// $source->of(false);
+// $gallery = $source->gallery;
+// p_log($gallery);
+// foreach ($gallery as $key => $file) {
+// 	$dest->gallery->add("/agency/site/assets/files/".$datos["temp_id"]."/".$file);
+// }
 // $dest->gallery->add($source->gallery);
 // p_log($source->gallery);
 
