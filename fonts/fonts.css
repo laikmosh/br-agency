@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'din_alternate_blackregular';
+    src: url('din_alternate_black-webfont.woff2') format('woff2'),
+         url('din_alternate_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'din_alternatebold';
+    src: url('din_alternate_bold-webfont.woff2') format('woff2'),
+         url('din_alternate_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'din_alternate_lightregular';
+    src: url('din_alternate_light-webfont.woff2') format('woff2'),
+         url('din_alternate_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'din_alternate_mediumregular';
+    src: url('din_alternate_medium-webfont.woff2') format('woff2'),
+         url('din_alternate_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'din_alternateregular';
+    src: url('din_alternate-webfont.woff2') format('woff2'),
+         url('din_alternate-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
