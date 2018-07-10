@@ -21,7 +21,7 @@ $(document).ready(function(){
 			console.dir(value);
 		});
 	};
-	$(document).on('click touchstart', '#logout', function(event) {
+	$(document).on('click tap', '#logout', function(event) {
 		event.preventDefault();
 		var funcion = "logout";
 		var data = {};
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$(document).on('click touchstart', 'html', function(event) {
+	$(document).on('click tap', 'html', function(event) {
 		// event.preventDefault();
 		var target = event.target.className;
 		// console.log("name="+target);
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$(document).on('click touchstart', '.shadow', function(event) {
+	$(document).on('click tap', '.shadow', function(event) {
 		// event.preventDefault();
 		var target = event.target.className;
 		var shadow_width = $(".active").width();
@@ -88,12 +88,13 @@ $(document).ready(function(){
 			if ($(".lightbox").hasClass('active')) {
 				$(".lightbox").removeClass('active');
 				$(".dj_page").addClass('active');
+				$(".lightbox").html('');
 			} else {
 				reset_fields();
 			}
 		}
 	});
-	$(document).on('click touchstart', '.btn_popup', function(event) {
+	$(document).on('click tap', '.btn_popup', function(event) {
 		event.preventDefault();
 		$(".popup").removeClass('active');
 		$("general").removeClass('blur');
@@ -103,9 +104,15 @@ $(document).ready(function(){
 		$(".popup."+target).addClass('active');
 		$("general").addClass('blur');
 		$(".shadow").removeClass('hidden');
+		if ($(".book").hasClass('active')) {
+				$(".selected_dj").addClass('nodisp');
+				$(".book_button").addClass('nodisp');
+		} else {
+				$(".nodisp").removeClass('nodisp');
+		}
 	});
 
-	$(document).on('click touchstart', '.popup', function(e) {
+	$(document).on('click tap', '.popup', function(e) {
         var posX = $(".popup.active").offset().left + $(".popup.active").width(),
             posY = $(".popup.active").offset().top;
             posX = parseInt(Math.abs(e.pageX - posX)),
@@ -115,7 +122,7 @@ $(document).ready(function(){
         }
 	});
 
-	$(document).on('click touchstart', '.gallery_thumb', function(event) {
+	$(document).on('click tap', '.gallery_thumb, .profile_img', function(event) {
 		event.preventDefault();
 		var gallery = $(this).data('gallery');
 		var key = $(this).data('key');
@@ -136,26 +143,32 @@ $(document).ready(function(){
 		// });
 	});
 
-$(document).keydown(function(e){
-    if (e.keyCode > 36 && e.keyCode < 41) 
-      console.log("presionado:"+e.keyCode);
-  if (e.keyCode == 39) {
-      var $next = $(".gallery_img.activ").removeClass('activ').next(".gallery_img");  
-      if ($next.length) {
-      	$next.addClass('activ');
-      } else {
-      	$(".gallery_img:first").addClass('activ');
-      }
-      }   
-        if (e.keyCode == 37) {
-      var $next = $(".gallery_img.activ").removeClass('activ').prev(".gallery_img");  
-      if ($next.length) {
-      	$next.addClass('activ');
-      } else {
-      	$(".gallery_img:last").addClass('activ');
-      }
-      }     
+$(document).on('click tap', '.gallery_img', function(event) {
+	var $next = $(".gallery_img.activ").removeClass('activ').next(".gallery_img");  
+			if ($next.length) {
+				$next.addClass('activ');
+			} else {
+				$(".gallery_img:first").addClass('activ');
+			}
 });
+	$(document).keydown(function(e){
+		if (e.keyCode == 39) {
+			var $next = $(".gallery_img.activ").removeClass('activ').next(".gallery_img");  
+			if ($next.length) {
+				$next.addClass('activ');
+			} else {
+				$(".gallery_img:first").addClass('activ');
+			}
+		}   
+		if (e.keyCode == 37) {
+			var $next = $(".gallery_img.activ").removeClass('activ').prev(".gallery_img");  
+			if ($next.length) {
+				$next.addClass('activ');
+			} else {
+				$(".gallery_img:last").addClass('activ');
+			}
+		}     
+	});
 
 });//fin de documento
 
@@ -232,8 +245,11 @@ function reset_fields() {
 	$('.nullify').val("null");
 	$("#frame_edit_cont").html('<span class="gallery_pre">Guarda el perfil para agregar fotos a la galería</span>');
 	$(".dj_page").html('<span class="loading">Cargando...</span>');
+	$(".lightbox").html('');
 	target = "/agency";
 	if ( $(".selected").length > 0 && $(".cont_new_dj").length == 0) {history.pushState( { "target": target}, target, target); };
+	$(".selected").removeClass('selected');
+	$(".nodisp").removeClass('nodisp'); 
 };
 
 function formatBytes(bytes) {

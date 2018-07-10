@@ -39,7 +39,10 @@
 	ob_start();
 	?>
 	<div class="profile_container">
-		<div class="profile_img">
+		<div class="profile_img btn_popup" 
+					data-target="lightbox"
+					data-gallery="<?=$dj->id?>"
+					data-key="profile">
 			<div class="profile_img_data">
 				<?=$dj_name?>
 				<br>
@@ -60,13 +63,32 @@
 				<?=$mixcloud?>
 			</div>
 			<div class="info_elem">
+				<?
+				if (strlen($presskit) >= 5) {
+					?>
+						<a class="presskit_pdf" href="<?=$dj->presskit->url?>" target="_blank">
+							<span>Descarga<br>Presskit<br>PDF.</span>
+							<img src="<?=cacher('/agency/site/templates/img/pdf_ico.png')?>">
+						</a>
+
+					<?
+				}
+				?>
 				<label>Ubicación</label><span><?=$location?></span><br>
 				<label>Edad</label><span><?=$edad?></span><br>
 				<label>Venue</label><span><?=$venue?></span><br>
 				<label>Género</label><span><?=$genero?></span><br>
 				<label>Line-up</label><span><?=$lineup?></span><br>
+				<div class="cat_button"><label for="selected_<?=$dj->id?>">Agregar a mi lista</label></div>
 			</div>
 			<div class="info_gallery">
+				<div class="gallery_thumb btn_popup" 
+					data-target="lightbox"
+					data-gallery="<?=$dj->id?>"
+					data-key="profile"
+					style="background-image: url('<?=$dj->profile_image->last()->width(220)->url?>')">
+					<img src="<?=$dj->profile_image->last()->height(150)->url?>">
+				</div>
 			<?
 			foreach ($dj->gallery as $key => $image) {
 				?>
@@ -74,9 +96,9 @@
 					data-target="lightbox"
 					data-gallery="<?=$dj->id?>"
 					data-key="<?=$key?>"
-					>
-						<img src="<?=$image->height(120)->url?>">
-					</div>
+					style="background-image: url('<?=$image->width(220)->url?>')">
+						<img src="<?=$image->height(150)->url?>">
+				</div>
 				<?
 			}
 			?>

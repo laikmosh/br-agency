@@ -7,6 +7,9 @@ width: 100%;
 text-align: center;
 }
 
+.lightbox {
+	background-color: black!important;
+}
 .lightbox, .dj_page, .dj_page_edit {
 	width: 90%!important;
     min-width: 350px;
@@ -94,21 +97,25 @@ strech-elem {
     display: flex ;flex-wrap: wrap;
 }
 
-.profile_container > div {box-sizing: border-box;
+.profile_container > div {
+	box-sizing: border-box;
 }
 
 .profile_img {
 	flex: 5 5 0;
-	background: var(--rojo);min-width: 400px;
+	background: var(--rojo);
+	min-width: 100%;
+	overflow: hidden!important;
+    max-height: 70vw;
 }
 
 .profile_img img {
 	object-fit: cover;
 	object-position: 50% 50%;
-	width: 100%;
-	height: 100%;
+	width: 101%;
+	height: 101%;
 	mix-blend-mode: screen;
-	filter: contrast(1.3);
+	filter: contrast(1.3)saturate(0%);
 }
 
 .profile_img_data {
@@ -121,7 +128,9 @@ strech-elem {
 
 .profile_info {
 	flex: 6 6 0;
-	padding: 30px;min-width: 400px;
+	padding: 30px;
+	min-width: 100%;
+	-webkit-overflow-scrolling: touch;
 }
 
 .info_elem {
@@ -130,6 +139,7 @@ strech-elem {
 	color: #666;
 	font-weight: 500;
 	padding-top: 15px;
+	position: relative;
 }
 
 .info_elem:first-child {
@@ -155,80 +165,51 @@ color: var(--rojo);
 .info_elem span {color: var(--rojo);font-weight: bold;
 	
 }
+
+.cat_button label {
+	background: var(--rojo);
+color: white;
+width: 100%;
+padding: 7px;
+text-align: center;
+font-weight: bold;
+font-size: 1.2em;
+margin-top: 20px;
+cursor: pointer;
+}
 .info_gallery {display: flex;flex-wrap: wrap;
 
 }
 
+.presskit_pdf {
+position: absolute;
+right: 0;
+display: flex;
+text-align: right;
+justify-content: center;
+align-items: center;
+max-height: 85px;
+cursor: pointer;
+}
+
+.presskit_pdf img{
+height: 85px;
+}
+
+
 
 /*fin seccion profile*/
-/*.mixcloud {
-	flex-basis: 100%!important;
-}*/
-
-
-/*.grid_elem_info {
-	max-height: 0;
-	opacity: 0;
-}
-
-.grid_elem_info {
-	pointer-events: none;
-	opacity: 0;
-}
-.grid_elem_info {
-	overflow: none;
-	position: relative;
-	left: 0;
-	right: 0;
-	max-height: unset;
-	opacity: 1;
-	background: green;
-	pointer-events: initial;
-}
-
-.grid_elem_info + .grid_elem_info {
-	opacity: 0!important;
-	position: relative!important;
-	pointer-events: none;
-	display: flex;
-	width: calc(100vw - 30px);
-	max-width: 994px;
-	left: -100vw;
-}
-
-.grid_elem_info_fixed {
-	width: 100%;
-	min-height: 100px;
-	background: var(--blanco);
-	padding: 0px 0;
-	display: flex;
-	flex-wrap: wrap;
-	cursor: default;
-}*/
-
-/*.grid_elem_info_fixed * {
-	flex: 1 1 0;
-}
-
-.grid_elem_info_fixed .elem_info_img {
-padding-right: 33%;
-box-sizing: border-box;
-min-width: 300px;
-min-height: 300px;
-max-height: 45vw;
-background-position: 50%;
-background-size: cover;
-position: relative;
-}*/
 
 /*responsive local conditional*/
-@media only screen and (min-width: 935px) {
+@media only screen and (min-width: 950px) {
 	.cat_button {
-	margin-top: 150px!important;
+	/*margin-top: 150px!important;*/
 	}
-	.profile_info {
+
+	.profile_container > div {
 		max-height: 90vh;
 		overflow: auto;
+		min-width: 425px;
 	}
 }
 /*responsive local conditional end*/
@@ -244,7 +225,6 @@ position: relative;
     background-repeat: no-repeat;
     background-position: 50%;
     display: none;
-    border-radius: 20px;
     overflow: hidden;
     background-color: black;
 }
@@ -266,19 +246,17 @@ position: relative;
 }
 
 .gallery_thumb {
-    max-height: 120px; ;
-    height: 120px;
     transition: all 0.5s;
     cursor: pointer;
     overflow: hidden;
+    background-size: cover;
+    background-position: 50%;
     flex-grow: 1;
+    max-width: 50%;
 }
 
 .gallery_thumb img {
-	object-fit: cover;
-	object-position: 50% 50%;
-	width: 100%;
-	height: 100%;
+	width: auto;height: 100%;opacity: 0;
 }
 
 .gallery_thumbs_cont:hover {
@@ -437,10 +415,6 @@ general {
 * {
 	transition: all 0.5s;
 	max-width: 100%;
-}
-
-* > div {
-	/*-webkit-overflow-scrolling: touch;*/
 }
 
 form {
@@ -846,6 +820,10 @@ h1 {
 	pointer-events: none!important;
 }
 
+.nodisp {
+	display: none!important; 
+}
+
 /* SAHDOW POPUPS */ 
 .shadow {
 	position: fixed;
@@ -863,6 +841,7 @@ h1 {
 	/* padding-bottom: 15vh; */
 	box-sizing: border-box;
 	overflow-x: hidden ;
+	-webkit-overflow-scrolling: touch;
 }
 
 .shadow > div {
@@ -930,6 +909,7 @@ h1 {
     pointer-events: none;
     overflow: hidden;
     transform-origin: right center -80px;
+    pointer-events: none;
 }
 
 /* HEADER */ 
